@@ -1,0 +1,30 @@
+<%
+page.tag = ' ';
+%>
+<%if(theme.tagcloud){%>
+<%- js('js/tag3d') %>
+<div class="article">
+    <h2 class="">标签</h2>
+    <div class="widget tagcloud">
+        <%- tagcloud() %>
+    </div>
+
+</div>
+<%}%>
+
+
+    <div class="article">
+
+                <div id="tag3d">
+                    <% var col = ['red','blue','yellow']; %>
+                    <% var index = 0; %>
+                    <% site.tags.sort('name').each(function(item){ %>
+                    <a data-src="<%- config.root %><%- item.path %>" href="<%= item.name %>" class="<%= col[index%3] %>" title="<%= item.name %>"><%= item.name %>  <sup><%= item.posts.length %></sup></a>
+                    <% index++; %>
+                    <% }); %>
+                </div>
+
+    </div>
+
+
+

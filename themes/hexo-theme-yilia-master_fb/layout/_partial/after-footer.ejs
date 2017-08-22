@@ -1,0 +1,41 @@
+<%- js('js/jquery.backstretch.js') %>
+
+<script>
+    var backRoot = "<%- theme['background-root'] %>";
+    var backArray = [ <% for(var i = 0; i < theme.background.length; i++) { %>"<%- theme.background[i] %>", <% } %> ];
+    //    console.log(backArray);
+
+    $(function() {
+        $.backstretch([
+            backRoot + backArray[0],
+            backRoot + backArray[1],
+            backRoot + backArray[2],
+            backRoot + backArray[3],
+            backRoot + backArray[4],
+            backRoot + backArray[5],
+            backRoot + backArray[6]
+        ], {
+            fade: 750,
+            duration: 5000
+        });
+        //console.log(backRoot + backArray[0]);
+    });
+</script>
+
+<% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+  <%- js('fancybox/jquery.fancybox.pack') %>
+<% } %>
+
+<%- js('js/mobile') %>
+<%- js('js/main') %>
+
+<%- partial('google-analytics') %>
+
+<% if (theme.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
+
+
+<%- js('js/ytmenu.js') %>
+

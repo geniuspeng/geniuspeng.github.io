@@ -1,0 +1,17 @@
+<%
+page.category = ' ';
+%>
+
+<%if(theme.categories){%>
+<div class="article">
+    <h2 class="">分类</h2>
+    <div class="widget tagcloud">
+        <%- list_categories() %>
+    </div>
+
+</div>
+<%}%>
+
+
+
+
