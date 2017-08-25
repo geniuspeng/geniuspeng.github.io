@@ -75,7 +75,7 @@ pagination_dir: page
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
 #theme: hexadillax-master,hexo-theme-yilia-master
-theme: hexo-theme-yilia-master_fb
+theme: hexo-theme-yilia-master
 
 ## https://github.com/chjj/marked
 markdown:
