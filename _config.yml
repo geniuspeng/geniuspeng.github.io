@@ -75,7 +75,8 @@ pagination_dir: page
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
 #theme: hexadillax-master,hexo-theme-yilia-master
-theme: hexo-theme-yilia-master
+# theme: hexo-theme-yilia-master
+theme: test
 
 ## https://github.com/chjj/marked
 markdown:
@@ -114,5 +115,5 @@ baidusitemap:
 #  branch: gitcafe-pages
 deploy:
   type: git
-  repository: git@github.com:geniuspeng/geniuspeng.github.io.git
+  repository: git@github.com:CrazyRRRRoc/CrazyRRRRoc.github.io.git
   branch: master
