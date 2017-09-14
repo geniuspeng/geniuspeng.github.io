@@ -25,12 +25,12 @@ Flexbox是spankin新推出的一种CSS布局模块，拥有完美的浏览器兼
 具体研究的话，主轴对齐flex项目justify-content，侧轴对齐flex项目align-items以及堆栈伸缩行align-content这几个属性可以实现更加高级的各种居中，对齐等布局方式
 <script src='http://runjs.cn/gist/p3t2gp33/css/midnight'></script>
 
-##flex等分布局
+## flex等分布局
 flex项目有一个flex的属性，它可以控制flex项目的伸缩性，它的3个值[ <'flex-grow'> <'flex-shrink'> <'flex-basis'> ]分别表示扩展比率，收缩比率，以及收缩基准值。详细解释在那个有用的链接里有~~
 简单来说，如果设置一个值，也就是设置flex-grow，其他两个都是默认的（flex-shrink=1，flex-basis=0px），它将代表这个flex项目的比例。就是说如果想实现等分，只需要将所有的项目flex设置为1
 <script src='http://runjs.cn/gist/runx25sp/css/rdark'></script>
 
-##flex不等分布局
+## flex不等分布局
 同样是设置flex的值，这里有一些特殊的值比如[flex: initial]，[flex: 0 auto]代表初始值[flex: 0 1 auto],而[flex: auto]代表默认值[flex: 1 1 auto]，[flex: none]代表[flex: 0 0 auto]
 <script src='http://runjs.cn/gist/3awjriff/css/rdark'></script>
 刚刚入门，只是了解了一些简单的例子，不过我已经可以感受到flexbox的强大了O O，[这里有更多的栗子- -](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).

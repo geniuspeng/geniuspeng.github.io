@@ -7,7 +7,7 @@ tags: [JavaScript,CSS,HTML,游戏]
 扯远了，今天也算是初步完成，姑且整理一下思路。[链接戳我](http://blog.locusland.xyz/tetris/)
 <!--more-->
 #####################
-#Board类
+# Board类
 首先，要有个板子，关于板子的大小，可以自己来定。我这里用的是21*11的板子。板子是通过js动态生成的，当然也可以直接在HTML页面里画，不过动态生成你可以直接改变板子的大小。。。具体生成方法就是在一个指定的div里，通过两个for循环分别添加行和列。外层for循环添加行row，内层for循环添加列单元cell，然后push到一个数组中，这样这个数组就可以通过类似二维数组的两个下标来访问板子的特定格子。
 板子Borad类还有几个方法，不过这些都是关于消除行的时候使用的，后面再说。
 #####################
@@ -21,44 +21,44 @@ Block类这个就是方块类了，关于方块这种东西，无非就是几个
 
 
 #####################
-#Input类
+# Input类
 这个方法是以前在网上学的，感觉基本上如果写一个需要按键进行操作的程序，使用一个Input类可以更好的进行代码的组织以及维护。这个方法没什么可说的，进入页面后通过codeKey进行判断，对相应的按键进行处理，当然这里需要与后面的Game类进行关联。
 #####################
-#Game类
+# Game类
 这个Game当然就是指俄罗斯方块了。是核心类。因为一个Game会包括板子Board和Input，而板子又包括小方块Chunk，方块集合Block，所以说这个Game是关联了先前的所有类的。这个类的方法都是游戏的控制相关。如游戏的开始，暂停，记分板，等级和速度控制，以及游戏结束，我最后又加了两个功能：改变方块样式和改变背景图片。
 先写到这吧。。。困死了==
 
 ###########
 建模思路大体就是这样了，然后是游戏核心设计思路。俄罗斯方块的规则很简单（规则就不介绍了），下面将整体的设计按照游戏流程来解释：
-##Game主要方法
+## Game主要方法
 首先，Game类的构造函数对游戏整体进行初始化，创建一个游戏主面板和一个显示下一个方块的面板，并调用Game的start方法。
-###start方法
+### start方法
 在游戏开始的时候通过genernateBlock方法生成一个Block，这个Block在生成后立即通过一个makeActive方法使其进入活动状态，就是进入游戏的主面板。接下来通过一个Game的核心方法tick，使游戏持续运行。
-###genernateBlock方法
+### genernateBlock方法
 生成一个Block，并赋予一个初始的location。
-###makeActive方法
+### makeActive方法
 使一个生成的Block进入活动状态，进入游戏主面板中。在进入主面板的时候对齐进行校验，如果location不符合要求，则说明方块已经堆叠到最上方，游戏结束，如果location符合要求，则说明游戏正常运行，再生成一个新的Block放在下一个方块的面板中（nextBoard）进行显示。
-###tick方法
+### tick方法
 方法内部，通过定时器持续执行tick方法，执行间隔即方块的下落速度来控制，使方块在固定时间间隔下落一次，并进行触底判断，直至方块触底，如果触底进行消行判断，并将已经生成的在nextBoard中的方块通过makeAction使其进入活动状态，再持续通过tick实现方块定时下落。
-###input
+### input
 键盘输入控制函数，没什么可介绍的-。-
-###getSpeed,getLevel，cal_score方法
+### getSpeed,getLevel，cal_score方法
 获取方块的下落间隔，和当前游戏级别，游戏级别越高，方块下落速度越快。cal_score方法带有一个参数，即消掉的行数n，根据n来进行计算此次消行获得多少分，并记录总共削掉了多少行，每消掉10行级别+1，下落间隔初始1000ms，每升一级减掉100ms，直到50ms。
-###gameover方法
+### gameover方法
 游戏结束时调用的方法，通过一个run标志来控制，游戏开始的时候此标志为true，结束时置为false直到下次开始。
-###pause，changeBlockStyle，changeBackGround方法
+### pause，changeBlockStyle，changeBackGround方法
 这几个方法与游戏核心方法关系并不大，控制游戏的暂停（同run标记一样，设置一个paused标记），改变方块的样式已经改变游戏背景。。。这里就不多废话了。
 
-##Board主要方法
+## Board主要方法
 Board的build方法上文已经介绍思路，下面的方法是专门针对消行来进行设计的，也是Game方法写出来之后加上去的。关于消行，就是看某一行是否所有的chunk都已经有方块占用，如果占满，删掉，然后让这一行上边所有的方块向下落（消掉n行就下落n行）。基于此原理，需要在board类中定义一个static_blocks属性，作为一个数组存储已经下落触底的方块。
 在这里需要乱入一个Game的方法makeStaticBlock，此方法负责在一个方块触底的时候，将这个Block添加到板子的static_blocks中（同样是在tick方法中执行）。
-###isFull方法
+### isFull方法
 带有一个参数i，判断游戏面板的第i行是否全占满，同样，判断方法便是看所有static_blocks中的Block在第i行的部分是否全部显示，如果全部显示，则说明这一行已经堆满。
-###clearStatic，unClearStatic方法
+### clearStatic，unClearStatic方法
 清除与添加static_blocks中所有的方块的样式。
-###shiftDown
+### shiftDown
 带有参数i，将第i行上方所有的static_blocks中的Chunk集体下移一行。在这里乱入一个Block的crashLine方法，这个方法将消除一个Block在第i行的方块的样式，并把在这一行的所有Chunk加上一个销毁标记。
-###checkFullLines
+### checkFullLines
 消行操作核心方法。首先检测需要消除的行，并直接调用crashLine方法进行消除，将行数存入一个数组craseLines中，然后调用clearStatic清除static_blocks所有的方块，然后从上到下一行一行进行shiftDown，消除了N行，shiftDown了N次后，调用unClearStatic显示剩下的方块。这里在显示方块的函数draw中有一个小细节：带有销毁标记的Chunk不去显示，这样就可以保证消掉的行不会再在主面板中出现。
 
 ###########

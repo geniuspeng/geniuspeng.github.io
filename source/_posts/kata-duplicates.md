@@ -26,7 +26,7 @@ function duplicates(arr) {
 		}
 ```
 大神写法：
-###1
+### 1
 ```
 function duplicates(arr) {
   for (var dup = [], i = 0; i < arr.length; i++) {
@@ -38,13 +38,13 @@ function duplicates(arr) {
   return dup
 }
 ```
-###2
+### 2
 ```
 function duplicates(arr) {
   return arr.filter(function(v, i) {return arr.indexOf(v) != i && arr.lastIndexOf(v) == i;});
 }
 ```
-###3
+### 3
 ```
 function duplicates(arr){
   return arr.reduce(function(a, v, i){
@@ -52,7 +52,7 @@ function duplicates(arr){
   }, []);
 }
 ```
-###4
+### 4
 ```
 function duplicates(arr) {
   var output = [];

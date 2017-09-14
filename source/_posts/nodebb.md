@@ -9,14 +9,14 @@ tags: node
 <!--more-->
 
 好吧，首先必须承认，最开始我是打算在Windows系统上去弄这货，但是遇到各种各样奇葩的问题，后来去NodeBB的论坛上，好多人也都反应最新版本的nodebb在windows上并不是能很好的搭建，于是乎转战Ubuntu了。
-###安装必备软件包
+### 安装必备软件包
 当然，系统必须有一些必备的软件包，首先还是必须要有git，然后安装一些nodebb所需的基本包：
 
 ```bash
 $ sudo apt-get install git nodejs nodejs-legacy npm redis-server imagemagick build-essential
 ```
 
-###安装nodejs
+### 安装nodejs
 接下来，如果没有装node的话，需要安装一个合适版本的node，这里不一定是安装最新版本，而是一个合适的稳定版本,可以使用 ``node –version`` 来查看当前node版本，如果想要安装node.js v0.11 使用这个ppa:chris-lea/node.js-devel即可：
 
 ```bash
@@ -24,18 +24,18 @@ $ sudo add-apt-repository ppa:chris-lea/node.js
 $ sudo apt-get update && sudo apt-get dist-upgrade
 ```
 
-###安装mongoDB
+### 安装mongoDB
 然后，这个社区目前使用的数据库是redis或者是mongoDB，就我个人而言，对于mongoDB更熟悉一些，所以我是基于mongoDB搭建的,那么首先必须在系统中安装mongoDB：
 这里上个链接吧:[ubuntu下安装mongoDB](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
 
-###克隆nodebb到本地
+### 克隆nodebb到本地
 安装好数据库之后，就可以从github上把nodebb的源码clone到本地了（nodebb目前还在完善之中，我是用的这个版本，可以根据需要选择clone哪个版本，如果不加需求就是clone最新版本了）：
 
 ```bash
 $ git clone -b v0.7.x https://github.com/NodeBB/NodeBB.git nodebb
 ```
 
-###安装nodebb依赖模块
+### 安装nodebb依赖模块
 然后进入到目标文件夹，安装nodebb的依赖模块：
 
 ```bash
@@ -45,7 +45,7 @@ $ npm install --production
 
 在这里，最开始我是遇到了一些问题，就是node-gyp rebuild的过程巨慢无比，老是在这里卡住：[我是解决方法链接](http://www.bubuko.com/infodetail-827600.html)
 
-###为用户建立数据库
+### 为用户建立数据库
 之后需要新建一个mongoDB数据库，来存储用户数据：
 首先进入mongo命令行：
 

@@ -23,7 +23,7 @@ uniqueInOrder([1,2,2,3,3])       == [1,2,3]
 题目要求很简单，一个字符串或者数组，去重。。。但不是常规的去重，只是去掉相邻元素中重复的变成一个，然后返回去重后的数组。。。思路也很简单其实，新建一个结果数组，然后就是遍历一下，看后一个是否与前一个相同，如果不同就push进去直到结束。。。
 当然我就是这么想的，而且结果也通过了，不过要针对字符串和数组区分一下，然后就是要注意一下，如果输入的是一个空字符串或者空数组，就直接返回一个空数组。。。当然我写在这里不是为了记录这些的，自己写的也就不粘上来献丑了。。。
 记录一些大神们的写法：
-###1
+### 1
 ```
 var uniqueInOrder = function (iterable)
 {
@@ -32,7 +32,7 @@ var uniqueInOrder = function (iterable)
 ```
 直接让参数调用数组的filter方法，这个方法会针对当前数组的每一项执行它参数的callback函数，返回这个callback函数的结果为true的数组。
 
-###2
+### 2
 ```
 function uniqueInOrder(it) {
   var result = []
@@ -49,7 +49,7 @@ function uniqueInOrder(it) {
 ```
 这个跟我的思路很像了，不过用了一个last来存取上一个变量，而且用[]加下标是可以针对字符串使用的，所以说少了一些不必要的判断。
 
-###3
+### 3
 ```
 var uniqueInOrder=function(iterable){
  
@@ -60,7 +60,7 @@ var uniqueInOrder=function(iterable){
 ```
 原理同1...
 
-###4
+### 4
 ```
 var uniqueInOrder=function(iterable) {
   var input = iterable.replace ? iterable : iterable.join('');
