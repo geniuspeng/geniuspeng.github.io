@@ -1,6 +1,6 @@
 title: PWA：fetch API
 date: 2017-09-14 15:27:23
-categories: JavaScript
+categories: 前端
 tags: [WebApp,JavaScript]
 ---
 
