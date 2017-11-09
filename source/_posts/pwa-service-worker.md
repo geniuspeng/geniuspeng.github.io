@@ -234,3 +234,4 @@ window.addEventListener('offline', function(event) {
 - [your-first-pwapp](https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/?hl=zh-cn#_17)
 - [Fetch](https://github.com/camsong/blog/issues/2)
 - [fetch API 简介](http://bubkoo.com/2015/05/08/introduction-to-fetch/)
+- [前端每周清单半年盘点之 PWA 篇](https://segmentfault.com/a/1190000010911535)
