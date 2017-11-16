@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>pwa-service-worker | 牧羊少年的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在2014年，W3C公布了service worker的草案，service worker提供了很多新的能力，使得web app拥有与native app相同的离线体验、消息推送体验。Service Worker是PWA的核心。谷歌给以 Service Worker API 为核心实现的 web 应用取了个高大上的名字">
+<meta name="keywords" content="JavaScript,WebApp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pwa-service-worker">
+<meta property="og:url" content="http://blog.locusland.xyz/2017/09/19/pwa-service-worker/index.html">
+<meta property="og:site_name" content="牧羊少年的个人博客">
+<meta property="og:description" content="在2014年，W3C公布了service worker的草案，service worker提供了很多新的能力，使得web app拥有与native app相同的离线体验、消息推送体验。Service Worker是PWA的核心。谷歌给以 Service Worker API 为核心实现的 web 应用取了个高大上的名字：Progressive Web Apps（PWA，渐进式增强 WEB 应用），">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://raw.githubusercontent.com/geniuspeng/image-storage/master/blog/service-worker/sw-caniuse.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/geniuspeng/image-storage/master/blog/service-worker/sw-lifecycle.png">
+<meta property="og:updated_time" content="2017-11-09T08:06:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pwa-service-worker">
+<meta name="twitter:description" content="在2014年，W3C公布了service worker的草案，service worker提供了很多新的能力，使得web app拥有与native app相同的离线体验、消息推送体验。Service Worker是PWA的核心。谷歌给以 Service Worker API 为核心实现的 web 应用取了个高大上的名字：Progressive Web Apps（PWA，渐进式增强 WEB 应用），">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/geniuspeng/image-storage/master/blog/service-worker/sw-caniuse.png">
+  
+    <link rel="alternative" href="/atom.xml" title="牧羊少年的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">牧羊少年</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">welcome</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/geniuspeng" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/locusland" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/WebApp/" style="font-size: 15px;">WebApp</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/flexbox/" style="font-size: 10px;">flexbox</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/web优化/" style="font-size: 10px;">web优化</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/我/" style="font-size: 10px;">我</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/知识结构/" style="font-size: 10px;">知识结构</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">牧羊少年</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">牧羊少年</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">welcome</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/geniuspeng" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/locusland" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-pwa-service-worker" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/09/19/pwa-service-worker/" class="article-date">
+  	<time datetime="2017-09-19T07:31:58.000Z" itemprop="datePublished">2017-09-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      pwa-service-worker
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebApp/">WebApp</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/前端/">前端</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在2014年，W3C公布了service worker的草案，service worker提供了很多新的能力，使得web app拥有与native app相同的离线体验、消息推送体验。<br>Service Worker是PWA的核心。谷歌给以 Service Worker API 为核心实现的 web 应用取了个高大上的名字：Progressive Web Apps（PWA，渐进式增强 WEB 应用），并且在其主要产品上进行了深入的实践。<br><a id="more"></a></p>
+<h3 id="Web-Workers"><a href="#Web-Workers" class="headerlink" title="Web Workers"></a>Web Workers</h3><p>Service Worker是Web Workers大家族中的一员，所以这里还是首先介绍一下Web Workers。<br>Web Worker为Web内容在后台线程中运行脚本提供了一种简单的方法。线程可以执行任务而不干扰用户界面。此外，他们可以使用XMLHttpRequest执行 I/O  (尽管responseXML和通道属性总是为空)。一旦创建， 一个worker 可以将消息发送到创建它的JavaScript代码, 通过将消息发布到该代码指定的事件处理程序 (反之亦然)。<br>实际上是一种多线程的机制，worker与用户页面的JS是相互独立的两个线程，所以能够互不干扰，worker有自己的作用域（如专用Worker的作用域DedicatedWorkerGlobalScope），worker内可以使用大多数JavaScript特性，包括Navigator，XMLHttpRequest，Math，Date等等。需要注意的是，worker内的代码不能操作DOM，也无法影响页面外观，综合整理worker大致有如下特点：</p>
+<ul>
+<li>全局对象就是worker对象本身，就是说self和this都指向worker对象。</li>
+<li>最小化的navigator对象，有online，appName，appVersion，userAgent和platFrom属性。</li>
+<li>只读的location</li>
+<li>WindowTimers.setTimeout 和 WindowTimers.setInterval</li>
+<li>XMLHttpRequest</li>
+<li>Array, Date, Math, String<br>在一个worker中最主要的你不能做的事情就是直接影响父页面。包括操作父页面的节点以及使用页面中的对象。比如通过PostMessage方法。<br>目前主要的web worker大致有以下几种：</li>
+<li>Worker（专用worker）：正如名字一样，就是一个正常的worker，可以通过var myWorker = new Worker(‘worker.js’)穿件;</li>
+<li>SharedWorker（共享worker）：一个共享worker可以被多个脚本使用——即使这些脚本正在被不同的window、iframe或者worker访问，生成共享worker可以通过var myWorker = new SharedWorker(‘worker.js’)创建;</li>
+<li>ServiceWorker： 一般作为web应用程序、浏览器和网络（如果可用）之前的代理服务器。它们旨在（除开其他方面）创建有效的离线体验，拦截网络请求，以及根据网络是否可用采取合适的行动并更新驻留在服务器上的资源。他们还将允许访问推送通知和后台同步API。本文详细介绍。</li>
+<li>Chrome Workers： 一种仅适用于firefox的worker。如果您正在开发附加组件，希望在扩展程序中使用worker且有在你的worker中访问  js-ctypes 的权限，你可以使用Chrome Workers。详情请参阅<a href="https://developer.mozilla.org/en-US/docs/Web/API/ChromeWorker" target="_blank" rel="external">ChromeWorker</a>。</li>
+<li>Audio Workers（音频worker）：配合Web Audio API使用，使得在web worker上下文中直接完成脚本化音频处理成为可能。</li>
+</ul>
+<h3 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h3><p>Service Worker做为Worker一种，具有上述提到的worker的所有特性，同时还提供的自己独有的一些功能。例如：在页面中注册并安装成功后，运行于浏览器后台，不受页面刷新的影响，可以监听和截拦作用域范围内所有页面的 HTTP 请求。<br>基于 Service Worker API 的特性，结合 Fetch API、Cache API、Push API、postMessage API 和 Notification API，可以在基于浏览器的 web 应用中实现如离线缓存、消息推送、静默更新等 native 应用常见的功能，以给 web 应用提供更好更丰富的使用体验。</p>
+<h4 id="Service-Worker兼容性"><a href="#Service-Worker兼容性" class="headerlink" title="Service Worker兼容性"></a>Service Worker兼容性</h4><p>参考<a href="http://caniuse.com/#feat=serviceworkers" target="_blank" rel="external">http://caniuse.com/#feat=serviceworkers</a><br><img src="https://raw.githubusercontent.com/geniuspeng/image-storage/master/blog/service-worker/sw-caniuse.png" alt="img"><br>当前，Edge已经竖起了小绿旗（默认不支持但可以手动开启），只剩下苹果的Safari还是一片红，虽然如此，不过最近似乎也开始在默默地搞起来了，支持sw只是时间的问题，至于IE嘛，不想多说。</p>
+<h4 id="Service-Worker生命周期"><a href="#Service-Worker生命周期" class="headerlink" title="Service Worker生命周期"></a>Service Worker生命周期</h4><p>服务工作线程的生命周期完全独立于网页，如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">install -&gt; installed -&gt; actvating -&gt; Active -&gt; Activated -&gt; Redundant</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/geniuspeng/image-storage/master/blog/service-worker/sw-lifecycle.png" alt="img"><br>要为网站安装服务工作线程，您需要先在页面的 JavaScript 中注册。 注册服务工作线程将会导致浏览器在后台启动服务工作线程安装步骤。</p>
+<p>在安装过程中，您通常需要缓存某些静态资产。如果所有文件均已成功缓存，那么服务工作线程就安装完毕。如果任何文件下载失败或缓存失败，那么安装步骤将会失败，服务工作线程就无法激活（也就是说，不会安装）。 如果发生这种情况，不必担心，它下次会再试一次。 但这意味着，如果安装完成，您可以知道您已在缓存中获得那些静态资产。</p>
+<p>安装之后，接下来就是激活步骤，这是管理旧缓存的绝佳机会，我们将在服务工作线程的更新部分对此详加介绍。</p>
+<p>激活之后，服务工作线程将会对其作用域内的所有页面实施控制，不过，首次注册该服务工作线程的页面需要再次加载才会受其控制。服务工作线程实施控制后，它将处于以下两种状态之一：服务工作线程终止以节省内存，或处理获取和消息事件，从页面发出网络请求或消息后将会出现后一种状态。</p>
+<h4 id="使用Service-Worker"><a href="#使用Service-Worker" class="headerlink" title="使用Service Worker"></a>使用Service Worker</h4><p>使用Service Worker有几个需要注意的地方，首先，要对一些前置的基础知识有一些了解，主要是<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="external">Promise</a>,以及前文提到的Fetch API，Cache API。<br>其次，由于一些不可描述的原因，Service Worker只能跑在HTTPS的服务器上，当然，Chrome等浏览器都对localhost跳过了安全认证，我们可以使用本地localhost进行调试。<br>这里主要介绍Service Worker的注册，以及相关事件的监听处理。</p>
+<h5 id="注册Service-Worker"><a href="#注册Service-Worker" class="headerlink" title="注册Service Worker"></a>注册Service Worker</h5><p>Service Worker的注册不同于其他web workers，但是也很简单，只需要使用一个register方法即可，例如注册/sw/sw.js文件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">'serviceWorker'</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">navigator.serviceWorker</span><br><span class="line">         .register(<span class="string">'/sw/sw.js'</span>, &#123;<span class="attr">scope</span>: <span class="string">'/'</span>&#125;)</span><br><span class="line">         .then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'Service Worker Registered'</span>); &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意这里有一个作用域的问题，如果你的sw.js写在/sw/路径下，不带第二个scope参数，Service worker只能监听/sw/路径下的fetch事件，而无法监听此目录外的fetch，使用scope可以改变这个作用域到根目录，对整个站点生效。另外Service Worker 没有页面作用域的概念，作用域范围内的所有页面请求都会被当前激活的 Service Worker 所监控。</p>
+<h5 id="install事件"><a href="#install事件" class="headerlink" title="install事件"></a>install事件</h5><p>只有注册是在页面js内实现，而sw所有的事件处理都写在worker的js下。首先是install事件，当前脚本被安装时，会触发 install 事件，在这个事件里，通常会做一些缓存的添加处理。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cacheName = <span class="string">'my-cache'</span>;</span><br><span class="line"><span class="keyword">let</span> filesToCache = [</span><br><span class="line">  <span class="string">'/index.html'</span>,</span><br><span class="line">  <span class="string">'/js/test.js'</span>,</span><br><span class="line">  <span class="string">'/css/test.css'</span></span><br><span class="line">];</span><br><span class="line">self.addEventListener(<span class="string">'install'</span>, (e) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'[ServiceWorker] Install'</span>);</span><br><span class="line">  e.waitUntil(</span><br><span class="line">    caches.open(cacheName).then(<span class="function">(<span class="params">cache</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'[ServiceWorker] Caching app shell'</span>);</span><br><span class="line">      <span class="keyword">return</span> cache.addAll(filesToCache);</span><br><span class="line">    &#125;)</span><br><span class="line">  )</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意这里的event参数，实际上是一个<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/InstallEvent" target="_blank" rel="external">InstallEvent</a>实例，它继承了父类<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/ExtendableEvent" target="_blank" rel="external">ExtendableEvent</a>和Event的方法。<br>Event &lt;- ExtendableEvent &lt;- InstallEvent<br>而ExtendableEvent有一个独有的方法waitUnti(),这个方法接收一个Promise（或者async function），会阻塞当前事件的行为而优先执行该Promise，直到Promise结束，再继续进行当前事件。所以在install事件里一般在安装之前先把重要的app shell进行缓存，确切的说一般缓存的是用于离线展示的相关资源。需要注意的是，filesToCache全部缓存之后，才会执行install事件，也就是说如果waitUntil内的Promise没有成功，install事件将不会触发而导致Service worker安装失败而进入redundant (废弃)状态，所以这里应尽量减少filesToCache中的缓存资源。<br>安装成功后，即进入等待(waiting)或激活(active)状态。在激活状态可通过监听各种事件，实现更为复杂的逻辑需求。</p>
+<h4 id="activate事件"><a href="#activate事件" class="headerlink" title="activate事件"></a>activate事件</h4><p>当安装完成后并进入激活状态，会触发 activate 事件。通过监听 activate 事件你可以做一些预处理，如对于旧版本的更新、对于无用缓存的清理等。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'activate'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'[ServiceWorker] Activate'</span>);</span><br><span class="line">  e.waitUntil(</span><br><span class="line">    caches.keys().then(<span class="function"><span class="keyword">function</span>(<span class="params">keyList</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Promise</span>.all(keyList.map(<span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (key !== cacheName) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">'[ServiceWorker] Removing old cache'</span>, key);</span><br><span class="line">          <span class="keyword">return</span> caches.delete(key);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;));</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">return</span> self.clients.claim();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这里的event同样继承了<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/ExtendableEvent" target="_blank" rel="external">ExtendableEvent</a>，在这里对CacheStorage对象进行遍历，将过期的cache进行一个移除操作，及时清理CacheStorage的存储空间。<br>waitUntil阻塞activate事件，这可以确保清理操作会在第一次 fetch 事件之前完成。<br>在激活时执行clients.claim 方法，更新所有客户端上的 Service Worker。</p>
+<h4 id="fetch事件"><a href="#fetch事件" class="headerlink" title="fetch事件"></a>fetch事件</h4><p>当浏览器发起请求时，会触发 fetch 事件。<br>Service Worker 安装成功并进入激活状态后即运行于浏览器后台，可以通过 fetch 事件可以拦截到当前作用域范围内的 http/https 请求，并且给出自己的响应。结合 Fetch API ，可以简单方便地处理请求响应，实现对网络请求的控制。这个功能十分强大，可以说是PWA的核心功能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'fetch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'[Service Worker] Fetch'</span>, e.request.url);</span><br><span class="line">  e.respondWith(</span><br><span class="line">    caches.match(e.request).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> response || fetch(e.request);</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>此处的参数是一个FetchEvent的实例，<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FetchEvent" target="_blank" rel="external">FetchEvent</a>继承了Event的属性和方法，同时拥有自己的方法respondWith。<br>FetchEvent 接口的 respondWith() 方法旨在包裹代码，这些代码为来自页面的request生成自定义的response。这些代码通过返回一个 Response 、 network error 或者 Fetch的方式resolve。</p>
+<h4 id="push事件"><a href="#push事件" class="headerlink" title="push事件"></a>push事件</h4><p>push 事件是为推送准备的。不过首先你需要了解一下 Notification API 和 PUSH API。</p>
+<p>通过 PUSH API，当订阅了推送服务后，可以使用推送方式唤醒 ServiceWorker 以响应来自系统消息传递服务的消息，即使用户已经关闭了页面。</p>
+<p>推送的实现有两步：</p>
+<p>不同浏览器需要用不同的推送消息服务器。以 Chrome 上使用 Google Cloud Messaging<gcm> 作为推送服务为例，第一步是注册 applicationServerKey(通过 GCM 注册获取)，并在页面上进行订阅或发起订阅。每一个会话会有一个独立的端点（endpoint），订阅对象的属性(PushSubscription.endpoint) 即为端点值。将端点发送给服务器后，服务器用这一值来发送消息给会话的激活的 Service Worker （通过 GCM 与浏览器客户端沟通）。</gcm></p>
+<h4 id="sync事件"><a href="#sync事件" class="headerlink" title="sync事件"></a>sync事件</h4><p>sync事件由background sync发出，是一种后台同步事件。background sync 是 Google 配合 SW 推出的 API，用于为 SW 提供一个可以实现注册和监听同步处理的方法。但它还不在 W3C WEB API 标准中。在 Chrome 中这也只是一个实验性功能，需要访问 chrome://flags/#enable-experimental-web-platform-features ，开启该功能，然后重启生效。<br>后台同步功能允许你一次性或按间隔请求后台数据同步，可以配合其他API实现一些很强大的功能如定时推送，定时更新等。用户无需打开页面，只要唤醒了Service Worker，就可以收到sync事件。<br>在页面注册sync事件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Register your service worker:</span></span><br><span class="line">navigator.serviceWorker.register(<span class="string">'/sw.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Then later, request a one-off sync:</span></span><br><span class="line">navigator.serviceWorker.ready.then(<span class="function"><span class="keyword">function</span>(<span class="params">swRegistration</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> swRegistration.sync.register(<span class="string">'myFirstSync'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在sw.js中监听sync事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'sync'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (event.tag == <span class="string">'myFirstSync'</span>) &#123;</span><br><span class="line">    event.waitUntil(doSomeStuff());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>一个很酷的地方在于，sync事件可以在离线时发出，ServiceWorker会记住发出的事件，并且在重新联网时做出响应，这可以解决我们实际生活中很多不必要的“时间浪费”，比如我们提交某个表单，提交的时候可能网络不好等了好久，最后还没提交成功又要重新填写表单数据，有了sync时间我们完全不必考虑网络情况，让后台同步解决就可以了。</p>
+<h4 id="message事件"><a href="#message事件" class="headerlink" title="message事件"></a>message事件</h4><p>前面说过，ServiceWorker同其他Worker一样，运行于一个独立的沙盒中，无法访问DOM等页面相关的信息，但我们可以通过 postMessage<br>API，实现Service Worker与页面之间的通信。</p>
+<h5 id="页面向SW发消息"><a href="#页面向SW发消息" class="headerlink" title="页面向SW发消息"></a>页面向SW发消息</h5><p>首先在sw注册之后，才可以navigator.serviceWorker.controller句柄。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sendMessageToSW = <span class="function">(<span class="params">msg</span>) =&gt;</span> &#123;</span><br><span class="line">  navigator.serviceWorker.controller &amp;&amp; navigator.serviceWorker.controller.postMessage(msg);</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">if</span> (<span class="string">'serviceWorker'</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  navigator.serviceWorker</span><br><span class="line">           .register(<span class="string">'/service-worker.js'</span>)</span><br><span class="line">           .then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'Service Worker Registered'</span>); &#125;)</span><br><span class="line">           .then(<span class="function"><span class="params">()</span> =&gt;</span> sendMessageToSW(<span class="string">'hello sw!'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在sw.js监听message事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(event.data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>反过来 service worker 给主页面发消息就要复杂一点了。在 service worker 里发送信息需要通过 Client 对象的 postMessage 方法。获取 Client 的方法有很多，比如，刚从主页面发来的消息，事件的来源就是一个 Client 对象，即 event.source。不过，这只能向来源发消息，但如果你开了几个网页，或者不是通过主页消息发来的该怎么办哪？方法还是有的，在 service workers 中可以通过 clients 来获取所有的页面对象或其他的 service workers。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">self.clients.matchAll().then(<span class="function"><span class="keyword">function</span>(<span class="params">clientList</span>) </span>&#123;</span><br><span class="line">    clientList.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">client</span>) </span>&#123;</span><br><span class="line">        client.postMessage(<span class="string">'Service worker attached.'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意这里的postMessage都不是window作用域下的，而是页面中的navigator.serviceWorker.controller下面的postMessage，同样Service Worker下拥有client的postMessage方法可以实现从Service Worker向页面发送消息。</p>
+<h4 id="online-offline事件"><a href="#online-offline事件" class="headerlink" title="online/offline事件"></a>online/offline事件</h4><p>当网络状态发生变化时，会触发 online 或 offline 事件。结合这两个事件，可以与 Service Worker 结合实现更好的离线使用体验，例如当网络发生改变时，替换/隐藏需要在线状态才能使用的链接导航等。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'offline'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'离线了'</span>)</span><br><span class="line">  Notification.requestPermission().then(<span class="function">(<span class="params">grant</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (grant !== <span class="string">'granted'</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">const</span> notification = <span class="keyword">new</span> Notification(<span class="string">"网络挂掉了哦~"</span>, &#123;</span><br><span class="line">      body: <span class="string">'虽然离线了，但是我还可以访问'</span>,</span><br><span class="line">      icon: <span class="string">'http://si1.go2yd.com/get-image/0Gp8bLbHOkK'</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Service-Worker调试"><a href="#Service-Worker调试" class="headerlink" title="Service Worker调试"></a>Service Worker调试</h3><p>在 Chrome 中，service worker 的信息显示在 Application -&gt; Service Workers 中，就像这样</p>
+<p>一些旧版本的Chrome可能把sw放在一个单独的地方，这时我们需要通过手动点击Service Worker后面的inspect来唤起调试窗口。<br>调试Service Worker可能是一项挑战，并且在涉及缓存的情况下，如果缓存未在您预期的时间进行更新，就可能变成一场更可怕的恶梦。典型Service Worker生命周期和代码错误的双重夹击可能很快令您感到失望。但请不要失望。您可以利用一些工具来改善自己的处境。</p>
+<h3 id="Service-Worker更新"><a href="#Service-Worker更新" class="headerlink" title="Service Worker更新"></a>Service Worker更新</h3><p>如果 sw.js 文件的内容有改动，当访问网站页面时浏览器获取了新的文件，它会认为有更新，于是会安装新的文件并触发 install 事件。但是此时已经处于激活状态的旧的 Service Worker 还在运行，新的 Service Worker 完成安装后会进入 waiting 状态。直到所有已打开的页面都关闭，旧的 Service Worker 自动停止，新的 Service Worker 才会在接下来打开的页面里生效。<br>可以在 install 事件中执行 skipWaiting 方法跳过 waiting 状态，然后会直接进入 activate 阶段。接着在 activate 事件发生时，通过执行 clients.claim 方法，更新所有客户端上的 Service Worker。示例：</p>
+<h3 id="一些参考链接"><a href="#一些参考链接" class="headerlink" title="一些参考链接"></a>一些参考链接</h3><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Cache" target="_blank" rel="external">MDN Cache</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/27586862" target="_blank" rel="external">解锁缓存新姿势——更灵活的 Cache</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/?hl=zh-cn#_17" target="_blank" rel="external">your-first-pwapp</a></li>
+<li><a href="https://github.com/camsong/blog/issues/2" target="_blank" rel="external">Fetch</a></li>
+<li><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/" target="_blank" rel="external">fetch API 简介</a></li>
+<li><a href="https://segmentfault.com/a/1190000010911535" target="_blank" rel="external">前端每周清单半年盘点之 PWA 篇</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/14/settimeout/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          关于一道题想到的...
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/19/pwa-cache/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">pwa-cache</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="pwa-service-worker" data-title="pwa-service-worker" data-url="http://blog.locusland.xyz/2017/09/19/pwa-service-worker/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 牧羊少年
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

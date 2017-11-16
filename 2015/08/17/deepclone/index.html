@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>深入分析deepclone | 牧羊少年的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最开始看到深度克隆（DeepClone）这个词，完全不理解是什么意思。复制就复制嘛，干嘛还搞写什么深浅的？后来随着对JS理解的深入，也就慢慢理解了这个词的含义~这个问题，其实说来也很简单，但看似又不那么简单。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入分析deepclone">
+<meta property="og:url" content="http://blog.locusland.xyz/2015/08/17/deepclone/index.html">
+<meta property="og:site_name" content="牧羊少年的个人博客">
+<meta property="og:description" content="最开始看到深度克隆（DeepClone）这个词，完全不理解是什么意思。复制就复制嘛，干嘛还搞写什么深浅的？后来随着对JS理解的深入，也就慢慢理解了这个词的含义~这个问题，其实说来也很简单，但看似又不那么简单。">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-23T06:16:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入分析deepclone">
+<meta name="twitter:description" content="最开始看到深度克隆（DeepClone）这个词，完全不理解是什么意思。复制就复制嘛，干嘛还搞写什么深浅的？后来随着对JS理解的深入，也就慢慢理解了这个词的含义~这个问题，其实说来也很简单，但看似又不那么简单。">
+  
+    <link rel="alternative" href="/atom.xml" title="牧羊少年的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">牧羊少年</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">welcome</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/geniuspeng" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/locusland" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/WebApp/" style="font-size: 15px;">WebApp</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/flexbox/" style="font-size: 10px;">flexbox</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/web优化/" style="font-size: 10px;">web优化</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/我/" style="font-size: 10px;">我</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/知识结构/" style="font-size: 10px;">知识结构</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">牧羊少年</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">牧羊少年</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">welcome</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/geniuspeng" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/locusland" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-deepclone" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/17/deepclone/" class="article-date">
+  	<time datetime="2015-08-17T11:22:35.000Z" itemprop="datePublished">2015-08-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      深入分析deepclone
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最开始看到深度克隆（DeepClone）这个词，完全不理解是什么意思。复制就复制嘛，干嘛还搞写什么深浅的？后来随着对JS理解的深入，也就慢慢理解了这个词的含义~这个问题，其实说来也很简单，但看似又不那么简单。<br><a id="more"></a><br>说到DeepClone，还要从JS那个“一切皆为对象”说起，JS的数据类型有6种，其中5中基本类型（string，boolean，number，null，undefined）和1中引用类型（Object），而这种引用类型又生了很多“儿子”，除了String，Boolean，Number这些包装类型，还有Array，Function，RegExp，Date等等。<br>那么，所谓克隆（复制），大家都理解，就是弄一个跟原来的东东一模一样的东东- -所以说，既然是这样，直接赋值不就搞定了么，我最开始就是这么想的，弄这么复杂搞了个什么“深度复制”和直接赋值有什么区别？例如现在有个基本类型a，我想把它复制到b上面去：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">var b = a;</span><br><span class="line">a = 10;</span><br><span class="line">console.log(b); // 1</span><br><span class="line"></span><br><span class="line">var a = &apos;hello&apos;;</span><br><span class="line">var b = a;</span><br><span class="line">a = &apos;world&apos;;</span><br><span class="line">console.log(b); // hello</span><br><span class="line"></span><br><span class="line">var a = true;</span><br><span class="line">var b = a;</span><br><span class="line">a = false;</span><br><span class="line">console.log(b); // true</span><br></pre></td></tr></table></figure>
+<p>从代码中可以看出，对于数字，字符串，和布尔类型的基本类型变量，直接赋值即可完成复制。那么对于引用类型呢？这里首先想到Function类型，它虽然继承自Object，然而在JS中函数总是感觉有一些特殊性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = function() &#123;console.log(1);&#125;;</span><br><span class="line">var b = a;</span><br><span class="line">a = function() &#123;console.log(2);&#125;;</span><br><span class="line">b(); // 1</span><br></pre></td></tr></table></figure>
+<p>因为JS中函数是可以赋值给一个变量的，将这个变量直接复制给另一个变量，这样看来a的函数似乎直接被赋值给了b，可以完成复制，而实际上确实如此，如果单独说复制一个函数是可以像基本类型那样直接赋值来搞定的。然而如果根据JS的存储机制，引用类型（对象）所谓的复制并不像基本类型那样简单，实际上只是复制了当前对象的指针而已，即让新的变量的指针指向被复制对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a = function() &#123;console.log(1);&#125;;</span><br><span class="line">a.tmp = 10;</span><br><span class="line">var b = a;</span><br><span class="line">a.tmp = 20;</span><br><span class="line">console.log(b.tmp); // 20</span><br></pre></td></tr></table></figure>
+<p>这样就很容易看出来问题了，如果说给这个变量一个额外的属性tmp，它们共同指向内存中一片区域，赋值之后改变这个属性的值那么，复制对象b的tmp属性也会随之改变。对于其他引用类型来说，这个问题将更加直观：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = [0, 1, 2, 3];</span><br><span class="line">var b = a;</span><br><span class="line">a.push(4);</span><br><span class="line">console.log(b); // [0, 1, 2, 3, 4]</span><br></pre></td></tr></table></figure>
+<p>咳咳咳，一目了然，就是说，直接赋值顶多可以称得上是一种“浅复制”，对于基本类型来说没有问题，如果是引用类型，只是复制了指向这个对象的指针，而并没有完全复制其内容。所以DeepClone就出来了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function deepClone(obj) &#123;</span><br><span class="line">    var _toString = Object.prototype.toString;</span><br><span class="line">    </span><br><span class="line">    // null, undefined, non-object, function</span><br><span class="line">    if (!obj || typeof obj !== &apos;object&apos;) &#123;</span><br><span class="line">        return obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    var result = Array.isArray(obj) ? [] : </span><br><span class="line">        obj.constructor ? new obj.constructor() : &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    for (var key in obj ) &#123;</span><br><span class="line">        result[key] = deepClone(obj[key]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个比较通用的deepclone函数了，主要思路就是先把5中基本类型处理掉（直接赋值），然后根据引用类型的类别（数组还是对象）进行递归调用，然而还有一些特殊的引用类型，这个函数是无法解决的，但大家似乎任务这并不是深度克隆需要注意的地方。我曾经看到过一些对特殊引用类型deepclone处理方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// DOM Node</span><br><span class="line">if (obj.nodeType &amp;&amp; &apos;cloneNode&apos; in obj) &#123;</span><br><span class="line">    return obj.cloneNode(true);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Date</span><br><span class="line">if (_toString.call(obj) === &apos;[object Date]&apos;) &#123;</span><br><span class="line">    return new Date(obj.getTime());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// RegExp</span><br><span class="line">if (_toString.call(obj) === &apos;[object RegExp]&apos;) &#123;</span><br><span class="line">    var flags = [];</span><br><span class="line">    if (obj.global) &#123; flags.push(&apos;g&apos;); &#125;</span><br><span class="line">    if (obj.multiline) &#123; flags.push(&apos;m&apos;); &#125;</span><br><span class="line">    if (obj.ignoreCase) &#123; flags.push(&apos;i&apos;); &#125;</span><br><span class="line"></span><br><span class="line">    return new RegExp(obj.source, flags.join(&apos;&apos;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>嗯就酱~</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/19/ali-exam/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          一些阿里校招笔试题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/12/css-shape2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">那些年我们用CSS画的图形2</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="deepclone" data-title="深入分析deepclone" data-url="http://blog.locusland.xyz/2015/08/17/deepclone/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 牧羊少年
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

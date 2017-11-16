@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>简单的图片查看器（缩放和拖动） | 牧羊少年的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近参加了360的一个校招，然后留了这么个作业作为一只前端菜鸟，我的第一反应是：啊 写个简历吧，反正以后找工作也能用上…然后我就写。 。 。 我就写。 。 。 然后发现问题了：">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的图片查看器（缩放和拖动）">
+<meta property="og:url" content="http://blog.locusland.xyz/2015/05/16/picviewer/index.html">
+<meta property="og:site_name" content="牧羊少年的个人博客">
+<meta property="og:description" content="最近参加了360的一个校招，然后留了这么个作业作为一只前端菜鸟，我的第一反应是：啊 写个简历吧，反正以后找工作也能用上…然后我就写。 。 。 我就写。 。 。 然后发现问题了：">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://7xj4f4.com1.z0.glb.clouddn.com/360homework.png">
+<meta property="og:image" content="http://7xj4f4.com1.z0.glb.clouddn.com/h5drag.png">
+<meta property="og:updated_time" content="2017-08-23T06:16:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单的图片查看器（缩放和拖动）">
+<meta name="twitter:description" content="最近参加了360的一个校招，然后留了这么个作业作为一只前端菜鸟，我的第一反应是：啊 写个简历吧，反正以后找工作也能用上…然后我就写。 。 。 我就写。 。 。 然后发现问题了：">
+<meta name="twitter:image" content="http://7xj4f4.com1.z0.glb.clouddn.com/360homework.png">
+  
+    <link rel="alternative" href="/atom.xml" title="牧羊少年的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">牧羊少年</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">welcome</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/geniuspeng" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/locusland" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/WebApp/" style="font-size: 15px;">WebApp</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/flexbox/" style="font-size: 10px;">flexbox</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/web优化/" style="font-size: 10px;">web优化</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/我/" style="font-size: 10px;">我</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/知识结构/" style="font-size: 10px;">知识结构</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">牧羊少年</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">牧羊少年</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">welcome</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/geniuspeng" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/locusland" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-picviewer" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/05/16/picviewer/" class="article-date">
+  	<time datetime="2015-05-16T07:53:27.000Z" itemprop="datePublished">2015-05-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      简单的图片查看器（缩放和拖动）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/综合/">综合</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近参加了360的一个校招，然后留了这么个作业<br><img src="http://7xj4f4.com1.z0.glb.clouddn.com/360homework.png" alt="img"><br>作为一只前端菜鸟，我的第一反应是：啊 写个简历吧，反正以后找工作也能用上…然后我就写。 。 。 我就写。 。 。 然后发现问题了：<br><a id="more"></a></p>
+<ol>
+<li>这尼玛，网页上做简历跟在word上做能做出啥区别来么？交互又是什么GUI？再怎么做不都是把文字直接往里贴么。。。而且我还是用markdown写的，完全木有技术含量啊。。。会打字的都能做出来~这是我忽然想到了以前看过的一个学长的主页，用了一个看似很炫酷的东西做的关于自我简介的力学图。。。于是问了下群里的大神，告诉我用D3做的，感觉这个是个交互的东西而且感觉逼格挺高的呵，于是乎上网查了下······这尼玛这API给我几个月也记不全，好在我只想用一部分，就把力学图那里简单学了下，折腾2个晚上总算是做出来个东西，但是做出来之后感觉放到我用markdown写的那个简历（就是主页的about页面）里太特么不合群了（凭啥我们都不会动就你会动，凭啥就你能交互- -），所以就没扔进去，放在博客的<a href="http://locusland.xyz/" target="_blank" rel="external">Home主页</a>了- -</li>
+<li>由于本科水过来的，硕士还是水过来的，简历上确实写不出神马好东西来，无非也就是吹吹NB败败火只当看个乐呵···还是做个图片查看器那个好了。。。<br>要说这个要求，一个缩放，一个拖拽，我印象中用jQuery的话，几行代码松松搞定的。。。不过毕竟是个菜鸟，用jQuery想必还不如不做，对自己也没什么提高，还是要注重基础，基础嗯。。。所以得用原生的JS做，顺便熟悉一下那些事件。</li>
+</ol>
+<p>##关于缩放<br>这个没啥好说的，一般都是2个按钮，一个放大一个缩小，直接控制图片的<code>height</code>和<code>width</code>属性就可以了，或者用zoom属性来控制，点一下大一些或者小一些(不要问为神马用1.2)，咳咳咳。。。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function larger()&#123;//两种方式，可以用width和height，也可以用zoom来控制</span><br><span class="line">    var w = image.width;</span><br><span class="line">    var h = image.height;</span><br><span class="line">    image.width = w * 1.2;</span><br><span class="line">    image.height = h * 1.2;</span><br><span class="line">    // image.style.zoom = parseFloat(image.style.zoom) + 0.1;</span><br><span class="line">&#125;</span><br><span class="line">function smaller()&#123;//同larger</span><br><span class="line">    var w = image.width;</span><br><span class="line">    var h = image.height;</span><br><span class="line">    image.width = w / 1.2;</span><br><span class="line">    image.height = h / 1.2;</span><br><span class="line">    // image.style.zoom = parseFloat(image.style.zoom) - 0.1;</span><br><span class="line">    // if(image.style.zoom &lt; 0.1) return</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后一般都会带个滚轮来缩放吧，就是onmousewheel这个事件和wheelDelta这个属性来控制图片大小的问题，也是两种形式（宽高或者zoom属性），反正我是这么写的(据说FireFox浏览器木有wheelDelta这个属性，而是detail，关于浏览器兼容这些，就当外部已经处理好了吧，不要在意这些细节)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">image.onmousewheel = function(e)&#123; //也是两种方式</span><br><span class="line">    e = e || window.event; </span><br><span class="line">    var w = image.width;</span><br><span class="line">    var h = image.height;</span><br><span class="line">    image.width = e.wheelDelta&gt;0 ? w * 1.2 : w / 1.2;</span><br><span class="line">    image.height = e.wheelDelta&gt;0 ? h * 1.2 : h / 1.2;</span><br><span class="line">    // zoom = parseFloat(this.style.zoom);</span><br><span class="line">    // curZoom = zoom + (e.wheelDelta&gt;0 ? 0.05 : -0.05);	</span><br><span class="line">    // if(curZoom &lt; 0.1) return</span><br><span class="line">    // this.style.zoom=curZoom;</span><br><span class="line">    // return;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>##关于拖动<br>拖动的功能，在以前做项目的时候就遇到过，不过都是网上搜的代码直接用的，不过仔细分析一下原理，也不是很复杂，尤其是单纯滴拖个图片放到另一个位置，那更简单了<br>好吧做这个功能还真发现了奇怪的东西，就是说如果你的图片的<code>top</code>和<code>left</code>属性是通过外部css引入的，或者是style标签引入的，在js里直接要获取，它会很傲娇，不给你值，当然一般情况不会把一张图片摆在那进行操作（那时候你可以new Image（）嘛），我这只是个简单的图片的查看器，所以就简单起来了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;div&quot; style=&quot;position:absolute;top: 50px;left: 0px;&quot;&gt;</span><br><span class="line">	&lt;img draggable=&quot;true&quot; style=&quot;zoom: 1.0;position: absolute;top: 50px;left: 50px;cursor:move;visibility:visible&quot; id=&quot;image&quot; src=&quot;http://7xj4f4.com1.z0.glb.clouddn.com/test.jpg&quot; alt=&quot;大家好我是测试图片&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>简单的情况自然有简单的处理方法，直接加style属性，这样就可以直接获取他的top和left属性了。至于我为什么要加一个div，其实一开始直接用图片image来定位的，但是做出来之后，缩小之后的图片进行拖拽的时候，鼠标移动速度要比图片移动速度快，造成不同步了，而正常情况下图片也都不是单独存在的，这里就用div的style来进行图片的定位。<br>而拖动的原理就是。。。。。。简单的定位</p>
+<p>#####如果不用HTML5<br>那就是onmousedown，onmousemove，onmouseup这几个事件配合一下了，弄个<code>flag=false</code>代表是否可拖动(初始为不可拖动状态)：<br><strong>onmousedown</strong>：初始化一下，让<code>flag=true</code>，然后记录下此时的图片的top和left值，同时记录下此时的clientX和clientY（就是鼠标位置距离浏览器上边喝左边的距离，不算滚动条，我这里记为left_before和top_before）<br><strong>onmousemove</strong>：动态改变图片的top和left，怎么改变呢…首先要随时获取当前的clientX和clientY，减去初始化时获取的clientX和clientY（就是left_before和top_before），其实就是鼠标拖动的水平和垂直距离，再加上初始化时候的left和top，就是当前的left和top…还是很好理解的，这里在移动过程中要随时return，否则它拖一小段距离就罢工了<br><strong>onmouseup</strong>：拖动结束鼠标松开的时候触发，需要做的只是把flag设置为false，让其变回不可拖动状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">image.onmousedown = function(e) &#123;</span><br><span class="line">    e = e || window.event;</span><br><span class="line">    drag_flag = true;</span><br><span class="line">    left_init = parseInt(div.style.left);</span><br><span class="line">    top_init = parseInt(div.style.top);</span><br><span class="line">    console.log(left_init);</span><br><span class="line">    left_before = e.clientX;</span><br><span class="line">    top_before = e.clientY;</span><br><span class="line">&#125; </span><br><span class="line">image.onmousemove =  function(e) &#123;</span><br><span class="line">    e = e || window.event;</span><br><span class="line">    if(drag_flag)&#123;</span><br><span class="line">        div.style.top  =  (e.clientY - top_before + top_init)+&quot;px&quot;;</span><br><span class="line">        div.style.left = (e.clientX - left_before + left_init) +&quot;px&quot;;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;	</span><br><span class="line">&#125; </span><br><span class="line">image.onmouseup = function(e) &#123;</span><br><span class="line">    e = e || window.event;</span><br><span class="line">    drag_flag = false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#####如果用HTML5<br>其实H5有个drag，专门处理拖动的，不过对于这种简单的图片拖动，其实是没有什么区别的，在这里，我要无耻地盗一张图<br><img src="http://7xj4f4.com1.z0.glb.clouddn.com/h5drag.png" alt="img"><br>看完这个，其实相对于之前mouse的3个事件，对应的是dragstart,dragover,drop三个事件，不过要注意下，首先要先设置个<code>draggable=&quot;true&quot;</code>,然后dragover和drop都是针对目标对象的，不是图片本身，而是图片落下的那个地方，其实在我这里就是body了,那么就可以这样写：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">image.ondragstart = function(e) &#123;</span><br><span class="line">    e = e || window.event;</span><br><span class="line">    drag_flag = true;</span><br><span class="line">    left_init = parseInt(div.style.left);</span><br><span class="line">    top_init = parseInt(div.style.top);</span><br><span class="line">    console.log(left_init);</span><br><span class="line">    left_before = e.clientX;</span><br><span class="line">    top_before = e.clientY;</span><br><span class="line">&#125; </span><br><span class="line">document.ondrop = function(e) &#123;</span><br><span class="line">    e = e || window.event;</span><br><span class="line">    drag_flag = false;</span><br><span class="line">&#125;</span><br><span class="line">document.ondragover = function(e) &#123;</span><br><span class="line">    e = e || window.event;</span><br><span class="line">    if(drag_flag)&#123;</span><br><span class="line">        div.style.top  =  (e.clientY - top_before + top_init)+&quot;px&quot;;</span><br><span class="line">        div.style.left = (e.clientX - left_before + left_init) +&quot;px&quot;;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实，H5的这个drag用在这里感觉挺浪费的，因为感觉做不出什么区别来- -拖拽的一些其他复杂实现感觉用这个比mouse事件要来得方便得多~~~<br>关于图片处理，CSS还可以实现平移，旋转，翻转，以及各种滤镜。。。不过题目也没要求，而且只是为了感悟下拖动的原理，所以就酱吧<br>虽然是很简单的东西，不过要想原生实现，其实还是会发现很多问题的，而且我这里没有考虑太多了浏览器兼容问题，都说了只是为了感悟一下拖动的原理= =还是，基础，要基础啊，前辈们说滴还是很有道理的，用别人的东西用10次也不如自己写一次！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/06/02/flexbox/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          浅谈flexbox--伸缩盒模型
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/09/fe-interview/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端笔试面试问题汇总</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="picviewer" data-title="简单的图片查看器（缩放和拖动）" data-url="http://blog.locusland.xyz/2015/05/16/picviewer/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 牧羊少年
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

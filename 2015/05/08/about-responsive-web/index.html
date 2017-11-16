@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>浅谈web响应式设计 | 牧羊少年的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我是从今年年初才开始接触前端的，从那时候开始就时不时地看到“响应式”这个词，倒是一直没有仔细的研究一下这个东西。。。不过这玩意貌似在前端领域是越来越火，尤其在这个移动设备逆天的年代。。。那么，什么是“响应式”呢？为什么要进行网页的“响应式设计”呢？我没打算在这里解释。在网上和书上这些解释已经随处可见了，。如果是资深前端">
+<meta name="keywords" content="响应式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈web响应式设计">
+<meta property="og:url" content="http://blog.locusland.xyz/2015/05/08/about-responsive-web/index.html">
+<meta property="og:site_name" content="牧羊少年的个人博客">
+<meta property="og:description" content="我是从今年年初才开始接触前端的，从那时候开始就时不时地看到“响应式”这个词，倒是一直没有仔细的研究一下这个东西。。。不过这玩意貌似在前端领域是越来越火，尤其在这个移动设备逆天的年代。。。那么，什么是“响应式”呢？为什么要进行网页的“响应式设计”呢？我没打算在这里解释。在网上和书上这些解释已经随处可见了，。如果是资深前端玩家- -应该对伊桑·马科特（Ethan Marcotte）据有开拓性的文章A">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-23T06:16:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈web响应式设计">
+<meta name="twitter:description" content="我是从今年年初才开始接触前端的，从那时候开始就时不时地看到“响应式”这个词，倒是一直没有仔细的研究一下这个东西。。。不过这玩意貌似在前端领域是越来越火，尤其在这个移动设备逆天的年代。。。那么，什么是“响应式”呢？为什么要进行网页的“响应式设计”呢？我没打算在这里解释。在网上和书上这些解释已经随处可见了，。如果是资深前端玩家- -应该对伊桑·马科特（Ethan Marcotte）据有开拓性的文章A">
+  
+    <link rel="alternative" href="/atom.xml" title="牧羊少年的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">牧羊少年</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">welcome</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/geniuspeng" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/locusland" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/WebApp/" style="font-size: 15px;">WebApp</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/flexbox/" style="font-size: 10px;">flexbox</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/web优化/" style="font-size: 10px;">web优化</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/我/" style="font-size: 10px;">我</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/知识结构/" style="font-size: 10px;">知识结构</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">牧羊少年</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">牧羊少年</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">welcome</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/geniuspeng" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/locusland" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-about-responsive-web" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/05/08/about-responsive-web/" class="article-date">
+  	<time datetime="2015-05-08T12:28:55.000Z" itemprop="datePublished">2015-05-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浅谈web响应式设计
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/响应式/">响应式</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/网站设计/">网站设计</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我是从今年年初才开始接触前端的，从那时候开始就时不时地看到“响应式”这个词，倒是一直没有仔细的研究一下这个东西。。。不过这玩意貌似在前端领域是越来越火，尤其在这个移动设备逆天的年代。。。<br>那么，什么是“响应式”呢？为什么要进行网页的“响应式设计”呢？我没打算在这里解释。在网上和书上这些解释已经随处可见了，。如果是资深前端玩家- -应该对伊桑·马科特（Ethan Marcotte）据有开拓性的文章<a href="http://alistapart.com/articles/responsive-web-design" target="_blank" rel="external">A List Apart</a>很熟悉，当然我这种小菜鸟是不知道的- -我只是想在这里标记下这个词的来源。<br>你肯定不希望用锤子来吃饭或者用菜刀在墙上钉钉子，响应式也是这个道理，简单来说就是根据屏幕设备的大小来进行合适的设计。概念上的东西就不在这里浪费墨水了，下面记录下我的个人理解。<br><a id="more"></a></p>
+<h2 id="主要三点："><a href="#主要三点：" class="headerlink" title="主要三点："></a>主要三点：</h2><ul>
+<li>媒体查询<ul>
+<li><a href="http://www.w3cplus.com/content/css3-media-queries" target="_blank" rel="external">CSS3 Media Querys</a></li>
+<li><a href="http://www.cnblogs.com/mofish/archive/2012/05/23/2515218.html" target="_blank" rel="external">响应式设计之Media Querys</a></li>
+<li><a href="http://blog.jobbole.com/18179/" target="_blank" rel="external">学习之响应式Web设计：Media Queries和Viewports</a></li>
+</ul>
+</li>
+<li>流体布局<ul>
+<li><a href="http://www.zhangxinxu.com/wordpress/?p=1463" target="_blank" rel="external">CSS流体(自适应)布局下宽度分离原则</a></li>
+</ul>
+</li>
+<li>图像，视频等的自适应<ul>
+<li><a href="http://www.zhangxinxu.com/wordpress/?p=2204" target="_blank" rel="external">响应图片(Responsive Images)技术简介</a></li>
+<li><a href="http://www.w3cplus.com/responsive/understanding-responsive-web-design-how-to-manage-images.html" target="_blank" rel="external">响应式设计：响应图像</a></li>
+<li><a href="http://pigerla.com/understanding-responsive-web-design/2014-02-16/understanding-responsive-web-design-how-to-manage-fonts/" target="_blank" rel="external">[译]响应式web设计之字体响应式</a></li>
+<li><a href="Flexible Images">Flexible Images</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="设计响应式的网页"><a href="#设计响应式的网页" class="headerlink" title="设计响应式的网页"></a>设计响应式的网页</h2><ol>
+<li><p>允许网页自动调整宽度<br>首先的问题是设备宽度未必就是布局宽度。比如一个设备的宽度是400px，一个网页的实际布局是1000px，那么之后的整个网页可能就会放大（或者说把网页内容缩小）以显示其全貌。这么做的目的是让非适应性布局能够在手机或者平板等移动设备中显示。然而我们需要找到一种方式来设定宽度，这样就可以使用媒体查询来进行检测。使用HTML中的元标签来完成这项任务。<br>viewport是网页默认的宽度和高度，这句话的意思就是说：让试图的宽度和设备的宽度一致，网页宽度默认等于屏幕宽度（width=device-width），原始缩放比例（initial-scale=1）为1.0，即网页初始大小占屏幕面积的100%。 所有主流浏览器都支持这个设置，包括IE9。对于那些老式浏览器（主要是IE6、7、8），需要使用<a href="https://code.google.com/p/css3-mediaqueries-js/" target="_blank" rel="external">css3-mediaqueries.</a>。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不要使用绝对宽度和绝对字体<br>由于网页会根据屏幕宽度调整布局，所以不能使用绝对宽度的布局，也不能使用具有绝对宽度的元素。</p>
+</li>
+<li><p>媒体查询 针对不同的屏幕进行详细设计<br>常见媒体查询（举个简单的栗子）  </p>
+<pre><code class="css"><span class="comment">/* 平板电脑布局: 481px 至 768px。样式继承自: 移动设备布局。 */</span>
+@<span class="keyword">media</span> only screen and (min-width: <span class="number">481px</span>) {
+<span class="selector-class">.class</span>{
+ <span class="attribute">background</span>: <span class="number">#333</span>;
+}
+}
+<span class="comment">/* 桌面电脑布局: 769px 至最高 1232px。样式继承自: 移动设备布局和平板电脑布局。 */</span>
+@<span class="keyword">media</span> only screen and (min-width: <span class="number">769px</span>) {
+<span class="selector-class">.class</span> {
+ <span class="attribute">background</span>: <span class="number">#666</span>;
+}
+}
+</code></pre>
+</li>
+<li><p>图片自适应<br>我感觉这一步算是终极优化步骤了。然而，这不是什么简单的事情。拿背景图片来说，自适应可不是说简单的设置background-size：cover就可以实现的。就是说，这不仅仅是让你的图片跟着屏幕的大小而进行放大和缩小。因为对于移动设备来说，加载一张大图片是很纠结的事情（当然4G和wifi另当别论），所以目前一个比较好的办法是选择一张相对较小的图片让它在小屏幕设备上去加载。但是问题还是有的，就现在这移动设备的各种型号各种尺寸来说，如果想适应N个大小的屏幕就要使用N张图片还是很蛋疼的事情，虽然可以将就着用–<br>关于图片自适应，上面给了一些其他博客的分析调查研究什么的。。。其实这个东西估计在不远的将来应该会更加完美的- -就先不要操这个心了吧</p>
+</li>
+</ol>
+<h2 id="一些其他可能有用的链接"><a href="#一些其他可能有用的链接" class="headerlink" title="一些其他可能有用的链接"></a>一些其他可能有用的链接</h2><ul>
+<li><a href="http://blog.jobbole.com/7908/" target="_blank" rel="external">什么是web响应式设计</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/05/responsive_web_design.html" target="_blank" rel="external">自适应网页设计</a></li>
+<li><a href="http://code.csdn.net/news/2819417" target="_blank" rel="external">25款最佳响应式前端开发框架</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/05/09/fe-interview/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          前端笔试面试问题汇总
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/05/FKS/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端开发知识结构</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="about-responsive-web" data-title="浅谈web响应式设计" data-url="http://blog.locusland.xyz/2015/05/08/about-responsive-web/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 牧羊少年
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

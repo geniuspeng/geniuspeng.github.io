@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PWA：fetch API | 牧羊少年的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第一次听PWA（Progressive Web App）这个词，还是在刚入职的时候。当时刚入坑前端几个月的我还是一脸萌币的状态，只是有一种不明觉厉的感觉。后来忙来忙去的也就扔在一边了，然后最近看到裕波大大的一篇文章：震惊！苹果向开发者低头？！！开始支持Service Worker,之前都是说这东西在国内发展不起来主要是">
+<meta name="keywords" content="JavaScript,WebApp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PWA：fetch API">
+<meta property="og:url" content="http://blog.locusland.xyz/2017/09/14/pwa-fetch/index.html">
+<meta property="og:site_name" content="牧羊少年的个人博客">
+<meta property="og:description" content="第一次听PWA（Progressive Web App）这个词，还是在刚入职的时候。当时刚入坑前端几个月的我还是一脸萌币的状态，只是有一种不明觉厉的感觉。后来忙来忙去的也就扔在一边了，然后最近看到裕波大大的一篇文章：震惊！苹果向开发者低头？！！开始支持Service Worker,之前都是说这东西在国内发展不起来主要是因为国内的果粉太多，而苹果对ServiceWork一直处于冷漠的观望态度- -实">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-09-19T01:59:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PWA：fetch API">
+<meta name="twitter:description" content="第一次听PWA（Progressive Web App）这个词，还是在刚入职的时候。当时刚入坑前端几个月的我还是一脸萌币的状态，只是有一种不明觉厉的感觉。后来忙来忙去的也就扔在一边了，然后最近看到裕波大大的一篇文章：震惊！苹果向开发者低头？！！开始支持Service Worker,之前都是说这东西在国内发展不起来主要是因为国内的果粉太多，而苹果对ServiceWork一直处于冷漠的观望态度- -实">
+  
+    <link rel="alternative" href="/atom.xml" title="牧羊少年的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="/img/avatar.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">牧羊少年</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">welcome</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/geniuspeng" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/locusland" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/WebApp/" style="font-size: 15px;">WebApp</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/flexbox/" style="font-size: 10px;">flexbox</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/web优化/" style="font-size: 10px;">web优化</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/我/" style="font-size: 10px;">我</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/知识结构/" style="font-size: 10px;">知识结构</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">牧羊少年</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">牧羊少年</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">welcome</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/geniuspeng" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/locusland" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-pwa-fetch" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/09/14/pwa-fetch/" class="article-date">
+  	<time datetime="2017-09-14T07:27:23.000Z" itemprop="datePublished">2017-09-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PWA：fetch API
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebApp/">WebApp</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/前端/">前端</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>第一次听PWA（Progressive Web App）这个词，还是在刚入职的时候。当时刚入坑前端几个月的我还是一脸萌币的状态，只是有一种不明觉厉的感觉。后来忙来忙去的也就扔在一边了，然后最近看到裕波大大的一篇文章：<a href="https://zhuanlan.zhihu.com/p/28293894" target="_blank" rel="external">震惊！苹果向开发者低头？！！开始支持Service Worker</a>,之前都是说这东西在国内发展不起来主要是因为国内的果粉太多，而苹果对ServiceWork一直处于冷漠的观望态度- -实际上，好像并没有那么冷漠233333…废话完毕，把最近学到的东西整理下：<br><a id="more"></a></p>
+<h3 id="打算分三个方面吧："><a href="#打算分三个方面吧：" class="headerlink" title="打算分三个方面吧："></a>打算分三个方面吧：</h3><ol>
+<li>Fetch API</li>
+<li>Cache API</li>
+<li>Service Worker</li>
+</ol>
+<h3 id="Fetch-API"><a href="#Fetch-API" class="headerlink" title="Fetch API"></a>Fetch API</h3><p>嗯这里主要讲fetch。其实说到底，fetch API和PWA关系并不是很大(但还是要了解这个东东)，而且Fetch API并不是为了PWA而生的，确切的说，我倒是觉得这货是为了取代Ajax的XMLHttpRequest而生的。先看一下fetch的基本用法（取自<a href="https://www.sitepoint.com/introduction-to-the-fetch-api/" target="_blank" rel="external">Introduction to the Fetch API</a>）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* API URL, you need to supply your API key */</span></span><br><span class="line"><span class="keyword">var</span> URL = <span class="string">'https://api.flickr.com/services/rest/?method=flickr.photos.search&amp;api_key=your_api_key&amp;format=json&amp;nojsoncallback=1&amp;tags=penguins'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetchDemo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  fetch(URL).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> response.json();</span><br><span class="line">  &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>&#123;</span><br><span class="line">    insertPhotos(json);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fetchDemo();</span><br></pre></td></tr></table></figure>
+<p>fetch可以接受两个参数，基本语法为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Promise&lt;Response&gt; fetch(input[, init]);</span><br></pre></td></tr></table></figure>
+<p>第一个参数input可以是一个 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/USVString" target="_blank" rel="external">USVString</a> 字符串，包含要获取资源的 URL，也可以是一个Request对象。第二个参数init是一个可选的配置对象，详见<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch" target="_blank" rel="external">这里</a>。<br>返回值是一个Promise对象，resolve结果为该请求对应的Response对象。</p>
+<h3 id="Request-amp-amp-Response"><a href="#Request-amp-amp-Response" class="headerlink" title="Request &amp;&amp; Response"></a>Request &amp;&amp; Response</h3><p>Fetch引入了三个接口：Headers，Request和Response。<br>上面提到了Request对象和Response对象，这两个对象用来表示Fetch API的资源请求和响应。<br>你可以使用  Request.Request() 构造函数创建一个 Request 对象，Request对象也可能被其他API返回，比如一个 service worker FetchEvent.request。Request对象接受两个参数，这两个参数和Fetch接受的参数一模一样,其中headers可以通过Headers对象生成。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> headers = <span class="keyword">new</span> Headers();</span><br><span class="line">headers.append(<span class="string">'Accept'</span>, <span class="string">'application/json'</span>);</span><br><span class="line"><span class="keyword">var</span> req = <span class="keyword">new</span> Request(URL, &#123;</span><br><span class="line">	method: <span class="string">'GET'</span>,</span><br><span class="line">	header: headers, </span><br><span class="line">	cache: <span class="string">'reload'</span></span><br><span class="line">&#125;);</span><br><span class="line">fetch(req).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> response.json();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>&#123;</span><br><span class="line">  insertPhotos(json);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>而且，我们可以从一个Request去生成另一个Request，下面的例子通过一个GET类型的Request，使用相同的配置新建了一个POST类型的Request。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> postReq = <span class="keyword">new</span> Request(req, &#123;<span class="attr">method</span>: <span class="string">'POST'</span>&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>同样的，我们可以使用Response的构造器建立一个Response对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myResponse = <span class="keyword">new</span> Response();</span><br></pre></td></tr></table></figure>
+<p>Response对象的相关属性可以参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Response" target="_blank" rel="external">MDN</a>。<br>尽管如此，我们实际上使用的Response对象大多都是其他API返回的，比如Fetch API，之前也说过，Fetch API返回的promise对象resolve的结果就是一个Response对象。</p>
+<h3 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h3><p>Request和Response对象都实现了<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Body" target="_blank" rel="external">Body</a>对象的方法。<br>body可以是以下类型的实例：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer" target="_blank" rel="external">ArrayBuffer</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/ArrayBufferView" target="_blank" rel="external">ArrayBufferView</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Blob" target="_blank" rel="external">Blob</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/File" target="_blank" rel="external">File</a></li>
+<li>String</li>
+<li><a href="https://url.spec.whatwg.org/#interface-urlsearchparams" target="_blank" rel="external">URLSearchParams</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData" target="_blank" rel="external">FormData</a></li>
+</ul>
+<p>Request和Response都为他们的body提供了以下方法，这些方法都返回一个Promise对象：</p>
+<ul>
+<li>arrayBuffer()</li>
+<li>blob()</li>
+<li>json()</li>
+<li>text()</li>
+<li>formData()</li>
+</ul>
+<h3 id="WHY-FETCH？"><a href="#WHY-FETCH？" class="headerlink" title="WHY FETCH？"></a>WHY FETCH？</h3><p>使用XHR发起一个请求一般是这样： </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">'GET'</span>, url);</span><br><span class="line">xhr.responseType = <span class="string">'json'</span>;</span><br><span class="line"></span><br><span class="line">xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(xhr.response);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"error"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
+<p>而使用fetch：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fetch(url).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> response.json();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"error"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>即使我们现在有jquery等类库对ajax进行了完美的封装，但xhr终归是一个设计较为粗糙的API，配置和调用起来并不是那么友好，而且基于事件的异步模型写起来也没有现代的Promise，而Request和Response对象遵循HTTP协议规范设计，而且基于Promise实现，配合现在的箭头函数，async/await可以更好地表现。在使用非文本方面，Body提供的相应方法使得Fetch API和XHR相比提供了极大的便利。<br>这里可能有人会有个疑问：Response就应该是请求来返回的，我们在浏览器端制造Response对象有什么意义？Service Workers API会告诉你答案。</p>
+<h3 id="一些常见的坑"><a href="#一些常见的坑" class="headerlink" title="一些常见的坑"></a>一些常见的坑</h3><ol>
+<li>首先，Fetch API发起的请求默认是不带cookie的，如果需要携带cookie请设置 fetch(url, {credentials: ‘include’})。</li>
+<li>服务器返回 400，500 错误码时并不会 reject，仅仅是Response的ok字段变为false，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。</li>
+<li>关于跨域，Fetch的第二个参数对象有一个 mode 属性，mode 属性用来决定是否允许跨域请求，以及哪些response属性可读。可选的mode属性值为 same-origin ， no-cors （默认）以及 cors 。</li>
+</ol>
+<ul>
+<li>same-origin 模式很简单，如果一个请求是跨域的，那么返回一个简单的error，这样确保所有的请求遵守同源策略。</li>
+<li>no-cors 模式允许来自CDN的脚本、其他域的图片和其他一些跨域资源，但是首先有个前提条件，就是请求的method只能是”HEAD”,”GET”或者”POST”。此外，任何 ServiceWorkers 拦截了这些请求，它不能随意添加或者改写任何headers，除了<a href="https://fetch.spec.whatwg.org/#simple-header" target="_blank" rel="external">这些</a> 。JavaScript不能访问Response中的任何属性，这保证了 ServiceWorkers 不会导致任何跨域下的安全问题而隐私信息泄漏。</li>
+<li>cors 模式我们通常用作跨域请求来从第三方提供的API获取数据。这个模式遵守 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="external">CORS协议</a> 。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/19/pwa-cache/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          pwa-cache
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/24/mobile-issues/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">那些移动端web踩过的坑</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="pwa-fetch" data-title="PWA：fetch API" data-url="http://blog.locusland.xyz/2017/09/14/pwa-fetch/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 牧羊少年
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
