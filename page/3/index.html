@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/WebApp/" style="font-size: 15px;">WebApp</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/flexbox/" style="font-size: 10px;">flexbox</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/web优化/" style="font-size: 10px;">web优化</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/我/" style="font-size: 10px;">我</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/知识结构/" style="font-size: 10px;">知识结构</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
+						<a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/WebApp/" style="font-size: 15px;">WebApp</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/flexbox/" style="font-size: 10px;">flexbox</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/web优化/" style="font-size: 10px;">web优化</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/我/" style="font-size: 10px;">我</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/知识结构/" style="font-size: 10px;">知识结构</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
 					</div>
 				</section>
 				
@@ -195,6 +195,70 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-flexbox" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/02/flexbox/" class="article-date">
+  	<time datetime="2015-06-02T13:22:47.000Z" itemprop="datePublished">2015-06-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/02/flexbox/">浅谈flexbox--伸缩盒模型</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在研究垂直居中的时候发现了flexbox这货，以前也知道它是个css3的新特性，但具体也不知道是干嘛的，这几天就仔细研究了下。。。感觉这货真是个逆天的存在啊O O<br>Flexbox是spankin新推出的一种CSS布局模块，拥有完美的浏览器兼容性！它可以轻易做到垂直居中、重新排序、布局的动态伸展与收缩。首先放3个应该会有用的链接：</p>
+<ul>
+<li><a href="http://caniuse.com/#feat=flexbox" target="_blank" rel="noopener">兼容性参考</a></li>
+<li><a href="http://www.w3.org/html/ig/zh/wiki/Css3-flexbox/zh-hans" target="_blank" rel="noopener">中文基本教程</a></li>
+<li><a href="http://www.w3cplus.com/css3/flexbox-basics.html" target="_blank" rel="noopener">flex快速布局神器</a>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css3/">css3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flexbox/">flexbox</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/css/">css</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/06/02/flexbox/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-picviewer" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -342,7 +406,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我是从今年年初才开始接触前端的，从那时候开始就时不时地看到“响应式”这个词，倒是一直没有仔细的研究一下这个东西。。。不过这玩意貌似在前端领域是越来越火，尤其在这个移动设备逆天的年代。。。<br>那么，什么是“响应式”呢？为什么要进行网页的“响应式设计”呢？我没打算在这里解释。在网上和书上这些解释已经随处可见了，。如果是资深前端玩家- -应该对伊桑·马科特（Ethan Marcotte）据有开拓性的文章<a href="http://alistapart.com/articles/responsive-web-design" target="_blank" rel="external">A List Apart</a>很熟悉，当然我这种小菜鸟是不知道的- -我只是想在这里标记下这个词的来源。<br>你肯定不希望用锤子来吃饭或者用菜刀在墙上钉钉子，响应式也是这个道理，简单来说就是根据屏幕设备的大小来进行合适的设计。概念上的东西就不在这里浪费墨水了，下面记录下我的个人理解。<br>
+        <p>我是从今年年初才开始接触前端的，从那时候开始就时不时地看到“响应式”这个词，倒是一直没有仔细的研究一下这个东西。。。不过这玩意貌似在前端领域是越来越火，尤其在这个移动设备逆天的年代。。。<br>那么，什么是“响应式”呢？为什么要进行网页的“响应式设计”呢？我没打算在这里解释。在网上和书上这些解释已经随处可见了，。如果是资深前端玩家- -应该对伊桑·马科特（Ethan Marcotte）据有开拓性的文章<a href="http://alistapart.com/articles/responsive-web-design" target="_blank" rel="noopener">A List Apart</a>很熟悉，当然我这种小菜鸟是不知道的- -我只是想在这里标记下这个词的来源。<br>你肯定不希望用锤子来吃饭或者用菜刀在墙上钉钉子，响应式也是这个道理，简单来说就是根据屏幕设备的大小来进行合适的设计。概念上的东西就不在这里浪费墨水了，下面记录下我的个人理解。<br>
       
     </div>
     
@@ -402,7 +466,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>费了几个晚上总算是把这个窝建好了~~~此窝由<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>强力驱动，搭载的是litten大神的<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">Yilia</a>主题。不过自己稍做了些修改–由于本身自带一些伪宅属性，于是把背景改成了动漫风，再有就是<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">Yilia</a>主题是本简约风格，我随便加了一些奇怪的东西，当然还想加一些更奇怪的东西，以后有精力的时候再弄吧。<br>废话讲完，第一篇正式的文章就当个搬运工好了。 。 。而且我觉得这东西对我来说也是很重要。。。由JacksonTian整理的“前端开发知识结构”<br>Frontend Knowledge Structure</p>
+        <p>费了几个晚上总算是把这个窝建好了~~~此窝由<a href="http://hexo.io/" target="_blank" rel="noopener">Hexo</a>强力驱动，搭载的是litten大神的<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">Yilia</a>主题。不过自己稍做了些修改–由于本身自带一些伪宅属性，于是把背景改成了动漫风，再有就是<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">Yilia</a>主题是本简约风格，我随便加了一些奇怪的东西，当然还想加一些更奇怪的东西，以后有精力的时候再弄吧。<br>废话讲完，第一篇正式的文章就当个搬运工好了。 。 。而且我觉得这东西对我来说也是很重要。。。由JacksonTian整理的“前端开发知识结构”<br>Frontend Knowledge Structure</p>
 <h2 id="项目起源"><a href="#项目起源" class="headerlink" title="项目起源"></a>项目起源</h2><p>还记得@jayli 的这幅前端知识结构图么。<br>
       
     </div>
@@ -463,15 +527,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
       
     </div>

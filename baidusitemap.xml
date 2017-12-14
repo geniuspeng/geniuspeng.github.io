@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://blog.locusland.xyz/2017/12/14/my-promise/</loc>
+    <lastmod>2017-12-14T10:41:32.251Z</lastmod>
+    <data>
+        <display>
+        <title>从源码角度实现一个自己的Promise</title>
+        <pubTime>2017-12-14T03:12:18.000Z</pubTime>
+        
+        <tag>Promise</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="http://blog.locusland.xyz/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.locusland.xyz/2017/11/15/task-and-job/</loc>
     <lastmod>2017-11-15T07:33:21.569Z</lastmod>
     <data>
@@ -345,43 +365,21 @@
 
     
   <url>
-    <loc>http://blog.locusland.xyz/2015/04/28/Start/</loc>
+    <loc>http://blog.locusland.xyz/2015/05/05/FKS/</loc>
     <lastmod>2017-08-23T06:16:30.000Z</lastmod>
     <data>
         <display>
-        <title>A new Start</title>
-        <pubTime>2015-04-28T03:39:31.000Z</pubTime>
+        <title>前端开发知识结构</title>
+        <pubTime>2015-05-05T14:58:02.000Z</pubTime>
         
-        <tag>开始</tag>
+        <tag>前端</tag>
          
-        <tag>我</tag>
-         
-        <tag>日记</tag>
+        <tag>知识结构</tag>
          
          
            
              
-              <breadCrumb title="日志" url="http://blog.locusland.xyz/categories/%E6%97%A5%E5%BF%97/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.locusland.xyz/2015/05/08/about-responsive-web/</loc>
-    <lastmod>2017-08-23T06:16:30.000Z</lastmod>
-    <data>
-        <display>
-        <title>浅谈web响应式设计</title>
-        <pubTime>2015-05-08T12:28:55.000Z</pubTime>
-        
-        <tag>响应式</tag>
-         
-         
-           
-             
-              <breadCrumb title="网站设计" url="http://blog.locusland.xyz/categories/%E7%BD%91%E7%AB%99%E8%AE%BE%E8%AE%A1/"/>
+              <breadCrumb title="整理" url="http://blog.locusland.xyz/categories/%E6%95%B4%E7%90%86/"/>
           
         </display>
     </data>
@@ -395,6 +393,26 @@
         <display>
         <title>深入分析deepclone</title>
         <pubTime>2015-08-17T11:22:35.000Z</pubTime>
+        
+        <tag>JavaScript</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="http://blog.locusland.xyz/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.locusland.xyz/2015/07/01/string-extend/</loc>
+    <lastmod>2017-08-23T06:16:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>String对象扩展</title>
+        <pubTime>2015-07-01T11:39:06.000Z</pubTime>
         
         <tag>JavaScript</tag>
          
@@ -429,19 +447,19 @@
 
     
   <url>
-    <loc>http://blog.locusland.xyz/2015/07/01/string-extend/</loc>
+    <loc>http://blog.locusland.xyz/2015/05/08/about-responsive-web/</loc>
     <lastmod>2017-08-23T06:16:30.000Z</lastmod>
     <data>
         <display>
-        <title>String对象扩展</title>
-        <pubTime>2015-07-01T11:39:06.000Z</pubTime>
+        <title>浅谈web响应式设计</title>
+        <pubTime>2015-05-08T12:28:55.000Z</pubTime>
         
-        <tag>JavaScript</tag>
+        <tag>响应式</tag>
          
          
            
              
-              <breadCrumb title="JavaScript" url="http://blog.locusland.xyz/categories/JavaScript/"/>
+              <breadCrumb title="网站设计" url="http://blog.locusland.xyz/categories/%E7%BD%91%E7%AB%99%E8%AE%BE%E8%AE%A1/"/>
           
         </display>
     </data>
@@ -477,6 +495,30 @@
 
     
   <url>
+    <loc>http://blog.locusland.xyz/2015/04/28/Start/</loc>
+    <lastmod>2017-08-23T06:16:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>A new Start</title>
+        <pubTime>2015-04-28T03:39:31.000Z</pubTime>
+        
+        <tag>开始</tag>
+         
+        <tag>我</tag>
+         
+        <tag>日记</tag>
+         
+         
+           
+             
+              <breadCrumb title="日志" url="http://blog.locusland.xyz/categories/%E6%97%A5%E5%BF%97/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.locusland.xyz/2015/11/10/todolist/</loc>
     <lastmod>2017-08-23T06:16:30.000Z</lastmod>
     <data>
@@ -490,28 +532,6 @@
            
              
               <breadCrumb title="杂谈" url="http://blog.locusland.xyz/categories/%E6%9D%82%E8%B0%88/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.locusland.xyz/2015/05/05/FKS/</loc>
-    <lastmod>2017-08-23T06:16:30.000Z</lastmod>
-    <data>
-        <display>
-        <title>前端开发知识结构</title>
-        <pubTime>2015-05-05T14:58:02.000Z</pubTime>
-        
-        <tag>前端</tag>
-         
-        <tag>知识结构</tag>
-         
-         
-           
-             
-              <breadCrumb title="整理" url="http://blog.locusland.xyz/categories/%E6%95%B4%E7%90%86/"/>
           
         </display>
     </data>
@@ -552,9 +572,9 @@
         <title>前端笔试面试问题汇总</title>
         <pubTime>2015-05-08T16:04:08.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>前端</tag>
+         
+        <tag>JavaScript</tag>
          
         <tag>CSS</tag>
          

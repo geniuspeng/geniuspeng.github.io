@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/WebApp/" style="font-size: 15px;">WebApp</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/flexbox/" style="font-size: 10px;">flexbox</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/web优化/" style="font-size: 10px;">web优化</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/我/" style="font-size: 10px;">我</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/知识结构/" style="font-size: 10px;">知识结构</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
+						<a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/WebApp/" style="font-size: 15px;">WebApp</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/flexbox/" style="font-size: 10px;">flexbox</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/web优化/" style="font-size: 10px;">web优化</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/我/" style="font-size: 10px;">我</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/知识结构/" style="font-size: 10px;">知识结构</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
 					</div>
 				</section>
 				
@@ -263,14 +263,14 @@
 <ul>
 <li><p>HTTP/1.1 301 Moved Permanently</p>
 </li>
-<li><p>Location: <a href="http://example.com/newuri" target="_blank" rel="external">http://example.com/newuri</a></p>
+<li><p>Location: <a href="http://example.com/newuri" target="_blank" rel="noopener">http://example.com/newuri</a></p>
 </li>
 <li><p>Content-Type: text/html</p>
 <p>浏览器会把用户指向到 Location中指定的 URL。头文件中的所有信息在一次跳转中都是必需的，内容部分可以为空。不管他们的名 称， 301和 302响应都不会被缓存除非增加一个额外的头选项，如 Expires或者 Cache-Control来指定它缓存。 <meat>元素的刷新标签和JavaScript也可以实现 URL的跳转，但是如果你必须要跳转的时候，最好的方法就是使用标准的 3XXHTTP状态代码，这主要是为了确保“后退”按钮可以正确地使用。</meat></p>
 </li>
 </ul>
 <p>  但是要记住跳转会降低用户体验。在用户和 HTML文档中间增加一个跳转，会拖延页面中所有元素的显示，因为在 HTML文件被加载前任何文件（图像、 Flash等）都不会被下载。</p>
-<p>  有一种经常被网页开发者忽略却往往十分浪费响应时间的跳转现象。 这种现象发生在当 URL本该有斜杠（ /）却被忽略掉时。例如，当我们要访问 <a href="http://astrology.yahoo.com/astrology" target="_blank" rel="external">http://astrology.yahoo.com/astrology</a> 时，实际上返回的是一个包含 301代码的跳转，它指向的是 <a href="http://astrology.yahoo.com/astrology/" target="_blank" rel="external">http://astrology.yahoo.com/astrology/</a>  （注意末尾的斜杠）。在 Apache服务器中可以使用 Alias 或者 mod_rewrite或者 the DirectorySlash来避免。</p>
+<p>  有一种经常被网页开发者忽略却往往十分浪费响应时间的跳转现象。 这种现象发生在当 URL本该有斜杠（ /）却被忽略掉时。例如，当我们要访问 <a href="http://astrology.yahoo.com/astrology" target="_blank" rel="noopener">http://astrology.yahoo.com/astrology</a> 时，实际上返回的是一个包含 301代码的跳转，它指向的是 <a href="http://astrology.yahoo.com/astrology/" target="_blank" rel="noopener">http://astrology.yahoo.com/astrology/</a>  （注意末尾的斜杠）。在 Apache服务器中可以使用 Alias 或者 mod_rewrite或者 the DirectorySlash来避免。</p>
 <p>  连接新网站和旧网站是跳转功能经常被用到的另一种情况。这种情况 下往往要连接网站的不同内容然后根据用户的不同类型（如浏览器类型、用户账号所属类型）来进行跳转。使用跳转来实现两个网站的切换十分简单，需要的代码量 也不多。尽管使用这种方法对于开发者来说可以降低复杂程度，但是它同样降低用户体验。一个可替代方法就是如果两者在同一台服务器上时使用 Alias和 mod_rewrite和实现。如果是因为域名的不同而采用跳转，那么可以通过使用 Alias或者 mod_rewirte建立 CNAME（保存一个域名和另外一个域名之间关系的DNS记录）来替代。</p>
 <p>4、可缓存的 AJAX</p>
 <p>  Ajax 经常被提及的一个好处就是由于其从后台服务器传输信息 的异步性而为用户带来的反馈的即时性。但是，使用 Ajax并不能保证用户不会在等待异步的 JavaScript和 XML响应上花费时间。在很多应用中，用户是否需要等待响应取决于 Ajax如何来使用。例如，在一个基于 Web的 Email客户端中，用户必须等待 Ajax返回符合他们条件的邮件查询结果。记住一点，“异步”并不异味着“即时”，这 很重要。</p>
@@ -308,7 +308,7 @@
 <p>document.getElementsByTagName(‘*’).length</p>
 <p>  那么多少个 DOM元素算是多呢？这可以对照有很好标记使用的类似页面。比如 Yahoo!主页是一个内容非常多的页面，但是它只使用了 700个元素（ HTML标签）。</p>
 <p>8、根据域名划分页面内容</p>
-<p>  把页面内容划分成若干部分可以使你最大限度地实现平行下载。由于 DNS查找带来的影响你首先要确保你使用的域名数量在 2个到 4个之间。例如，你可以把用到的 HTML内容和动态内容放在 <a href="http://www.example.org/" target="_blank" rel="external">http://www.example.org/</a> 上，而把页面各种组件（图片、脚本、 CSS)分别存放在 statics1.example.org和 statics.example.org上。</p>
+<p>  把页面内容划分成若干部分可以使你最大限度地实现平行下载。由于 DNS查找带来的影响你首先要确保你使用的域名数量在 2个到 4个之间。例如，你可以把用到的 HTML内容和动态内容放在 <a href="http://www.example.org/" target="_blank" rel="noopener">http://www.example.org/</a> 上，而把页面各种组件（图片、脚本、 CSS)分别存放在 statics1.example.org和 statics.example.org上。</p>
 <p>你可在 Tenni Theurer和 Patty Chi合写的文章 Maximizing Parallel Downloads in the Carpool Lane找到更多相关信息。</p>
 <p>9、使 iframe的数量最小</p>
 <p>  ifrmae 元素可以在父文档中插入一个新的 HTML文档。了解 iframe的工作理然后才能更加有效地使用它，这一点很重要。</p>

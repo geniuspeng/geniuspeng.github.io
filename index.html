@@ -114,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/WebApp/" style="font-size: 15px;">WebApp</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/flexbox/" style="font-size: 10px;">flexbox</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/web优化/" style="font-size: 10px;">web优化</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/我/" style="font-size: 10px;">我</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/知识结构/" style="font-size: 10px;">知识结构</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
+						<a href="/tags/CSS/" style="font-size: 17.5px;">CSS</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/WebApp/" style="font-size: 15px;">WebApp</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/css3/" style="font-size: 15px;">css3</a> <a href="/tags/event-loop/" style="font-size: 10px;">event loop</a> <a href="/tags/flexbox/" style="font-size: 10px;">flexbox</a> <a href="/tags/mobile/" style="font-size: 10px;">mobile</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/task/" style="font-size: 10px;">task</a> <a href="/tags/web优化/" style="font-size: 10px;">web优化</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 12.5px;">前端</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/我/" style="font-size: 10px;">我</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/游戏/" style="font-size: 10px;">游戏</a> <a href="/tags/知识结构/" style="font-size: 10px;">知识结构</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a> <a href="/tags/面试/" style="font-size: 12.5px;">面试</a>
 					</div>
 				</section>
 				
@@ -195,6 +195,66 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-my-promise" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/14/my-promise/" class="article-date">
+  	<time datetime="2017-12-14T03:12:18.000Z" itemprop="datePublished">2017-12-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/14/my-promise/">从源码角度实现一个自己的Promise</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于Promise的概念以及意义就不在这里介绍了，最近看到了一些实现Promise的核心思想，在这里整理一下。写这篇文章并不是为了实现一个自己的Promise，毕竟现在es6已经标准支持，而且还有一大堆的第三方Promise库，主要是为了从最底层的角度深入理解一下Promise的实现思路。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise/">Promise</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/12/14/my-promise/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-task-and-job" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -282,7 +342,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最新偶然看到一个关于for + setTimeout (fn, 0)的问题，其实在面试中，我们也经常被问到关于这类问题，一般涉及到闭包，作用域和作用域链，然后关于setTimeout (fn, 0)的执行顺序，顺便可以带出一些异步执行，任务队列，时间循环的东西，关于这些自己在一年前找工作的时候了解了一些，但是也不是很透彻。当时看的是阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="external">JavaScript 运行机制详解：再谈Event Loop</a>,只是大概知道有这么个东西，但具体来说还是…一脸萌比的状态<br>
+        <p>最新偶然看到一个关于for + setTimeout (fn, 0)的问题，其实在面试中，我们也经常被问到关于这类问题，一般涉及到闭包，作用域和作用域链，然后关于setTimeout (fn, 0)的执行顺序，顺便可以带出一些异步执行，任务队列，时间循环的东西，关于这些自己在一年前找工作的时候了解了一些，但是也不是很透彻。当时看的是阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank" rel="noopener">JavaScript 运行机制详解：再谈Event Loop</a>,只是大概知道有这么个东西，但具体来说还是…一脸萌比的状态<br>
       
     </div>
     
@@ -462,7 +522,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>第一次听PWA（Progressive Web App）这个词，还是在刚入职的时候。当时刚入坑前端几个月的我还是一脸萌币的状态，只是有一种不明觉厉的感觉。后来忙来忙去的也就扔在一边了，然后最近看到裕波大大的一篇文章：<a href="https://zhuanlan.zhihu.com/p/28293894" target="_blank" rel="external">震惊！苹果向开发者低头？！！开始支持Service Worker</a>,之前都是说这东西在国内发展不起来主要是因为国内的果粉太多，而苹果对ServiceWork一直处于冷漠的观望态度- -实际上，好像并没有那么冷漠233333…废话完毕，把最近学到的东西整理下：<br>
+        <p>第一次听PWA（Progressive Web App）这个词，还是在刚入职的时候。当时刚入坑前端几个月的我还是一脸萌币的状态，只是有一种不明觉厉的感觉。后来忙来忙去的也就扔在一边了，然后最近看到裕波大大的一篇文章：<a href="https://zhuanlan.zhihu.com/p/28293894" target="_blank" rel="noopener">震惊！苹果向开发者低头？！！开始支持Service Worker</a>,之前都是说这东西在国内发展不起来主要是因为国内的果粉太多，而苹果对ServiceWork一直处于冷漠的观望态度- -实际上，好像并没有那么冷漠233333…废话完毕，把最近学到的东西整理下：<br>
       
     </div>
     
@@ -582,7 +642,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>自十一假期回来就进入了疯狂的笔试面试阶段，到11月初终于工作尘埃落定。前一阵子也是写了个传说中的励志的故事<a href="http://mp.weixin.qq.com/s?__biz=MzI5MjA5MDQzNA==&amp;mid=400211500&amp;idx=1&amp;sn=881f3ce8213571ac223db7c250cd35b9#rd" target="_blank" rel="external">链接戳我</a>，从3月接触前端走到现在真的是不容易，好在没有放弃。不过这段时间一直忙着找工作的事情也是好久没有去搞一搞自己喜欢的东西了，确实前端这里还有好多东西要学，于是先来搞一个TODOlist：<br>
+        <p>自十一假期回来就进入了疯狂的笔试面试阶段，到11月初终于工作尘埃落定。前一阵子也是写了个传说中的励志的故事<a href="http://mp.weixin.qq.com/s?__biz=MzI5MjA5MDQzNA==&amp;mid=400211500&amp;idx=1&amp;sn=881f3ce8213571ac223db7c250cd35b9#rd" target="_blank" rel="noopener">链接戳我</a>，从3月接触前端走到现在真的是不容易，好在没有放弃。不过这段时间一直忙着找工作的事情也是好久没有去搞一搞自己喜欢的东西了，确实前端这里还有好多东西要学，于是先来搞一个TODOlist：<br>
       
     </div>
     
@@ -721,66 +781,6 @@
       
         <p class="article-more-link">
           <a  href="/2015/09/15/360-written/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-ali-exam" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/08/19/ali-exam/" class="article-date">
-  	<time datetime="2015-08-19T14:17:20.000Z" itemprop="datePublished">2015-08-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/19/ali-exam/">一些阿里校招笔试题</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天做了阿里的笔试题，总体感觉说来，比之前实习那个简单多了- -我记着那次各种跨度各种大，考了node，canvas，web安全，AMD和CommonJS等balabalabalalalal咳咳咳这次的笔试题更加注重基础了，整体来讲没啥问题，然而有些题也不是很确定。不扯废话了，把记录下来的几个觉得值得记录的题弄上来分析下：<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/整理/">整理</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/08/19/ali-exam/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

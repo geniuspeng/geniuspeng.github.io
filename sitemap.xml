@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.locusland.xyz/2017/12/14/my-promise/</loc>
+    
+    <lastmod>2017-12-14T10:41:32.251Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.locusland.xyz/2017/11/15/task-and-job/</loc>
     
     <lastmod>2017-11-15T07:33:21.569Z</lastmod>
@@ -114,14 +121,7 @@
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2015/04/28/Start/</loc>
-    
-    <lastmod>2017-08-23T06:16:30.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.locusland.xyz/2015/05/08/about-responsive-web/</loc>
+    <loc>http://blog.locusland.xyz/2015/05/05/FKS/</loc>
     
     <lastmod>2017-08-23T06:16:30.000Z</lastmod>
     
@@ -135,6 +135,13 @@
   </url>
   
   <url>
+    <loc>http://blog.locusland.xyz/2015/07/01/string-extend/</loc>
+    
+    <lastmod>2017-08-23T06:16:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.locusland.xyz/2015/09/15/360-written/</loc>
     
     <lastmod>2017-08-23T06:16:30.000Z</lastmod>
@@ -142,7 +149,7 @@
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2015/07/01/string-extend/</loc>
+    <loc>http://blog.locusland.xyz/2015/05/08/about-responsive-web/</loc>
     
     <lastmod>2017-08-23T06:16:30.000Z</lastmod>
     
@@ -156,14 +163,14 @@
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2015/11/10/todolist/</loc>
+    <loc>http://blog.locusland.xyz/2015/04/28/Start/</loc>
     
     <lastmod>2017-08-23T06:16:30.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2015/05/05/FKS/</loc>
+    <loc>http://blog.locusland.xyz/2015/11/10/todolist/</loc>
     
     <lastmod>2017-08-23T06:16:30.000Z</lastmod>
     
@@ -191,13 +198,6 @@
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/categories/index.html</loc>
-    
-    <lastmod>2017-08-23T06:16:30.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.locusland.xyz/curriculumvitae/index.html</loc>
     
     <lastmod>2017-08-23T06:16:30.000Z</lastmod>
@@ -206,6 +206,13 @@
   
   <url>
     <loc>http://blog.locusland.xyz/links/index.html</loc>
+    
+    <lastmod>2017-08-23T06:16:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.locusland.xyz/categories/index.html</loc>
     
     <lastmod>2017-08-23T06:16:30.000Z</lastmod>
     
