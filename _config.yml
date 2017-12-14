@@ -119,5 +119,5 @@ baidusitemap:
 #   branch: master
 deploy:
   type: git
-  repository: git@github.com:geniuspeng/geniuspeng.github.io.git
+  repository: https://github.com/geniuspeng/geniuspeng.github.io.git
   branch: master
