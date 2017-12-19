@@ -1,0 +1,15 @@
+#menu-outer
+  dev#specialShadow.bd-special-shadow(style="transform: scaleY(1);")
+  nav#menu-inner
+    .navbar-brand
+      a.navbar-item(href="#")
+        img(src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28")
+      .navbar-burger
+    .navbar-menu
+      .navbar-start
+        each url, label in theme.menu
+          .navbar-item
+            a.navbar-link(href=url)= label
+      .navbar-end
+        .navbar-item
+          a.button 

@@ -1,0 +1,33 @@
+@media screen and (min-width: 1024px)
+  #menu-outer
+    min-height 3.25rem
+    align-items stretch
+    display flex
+    nav#menu-inner
+      max-width 960px
+      width 960px
+      .navbar-burger
+        display none
+      .navbar-item, .navbar-link 
+        align-items center
+        display flex
+      .navbar-menu
+        display flex
+        align-items stretch
+        justify-content space-between
+        flex-grow 1
+        flex-shrink 0
+      .navbar-start 
+        justify-content flex-start
+        margin-right auto
+      .navbar-end 
+        justify-content flex-end
+        margin-left auto
+      .navbar-start, .navbar-end 
+        align-items stretch
+        display flex
+        a.button
+          width 20px
+          height 20px
+          background green
+// @media screen and (max-width: 1023px)

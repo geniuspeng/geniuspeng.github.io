@@ -8,7 +8,7 @@
 - pageTitle += ' [ ' + config.title + ' ]'
 
 doctype html
-html(lang=config.language)
+html(lang=config.language).fixed-top
   head
     meta(charset='UTF-8')
     title= pageTitle
@@ -18,10 +18,9 @@ html(lang=config.language)
         link(rel='stylesheet', href=url)
     link(rel="icon", href=config.root + 'img/favicon.png')
   body
-    #menu-outer
-      nav#menu-inner
-        each url, label in theme.menu
-          a(href=url)= label
+    include ./navbar.pug
+    include ./slider.pug
+    include ./magic-link.pug
     #content-outer
       #content-inner
         if body
