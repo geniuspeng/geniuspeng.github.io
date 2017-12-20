@@ -1,10 +1,14 @@
 
-if site.posts.length > 0
+if page.posts.length > 0
   #recent-posts
     h1 Recent Posts
-    each post in site.posts.sort('date', -1).limit(10).toArray()
+    each post in page.posts.sort('date', -1).toArray()
       .recent-post-item
         a(href=config.root + post.path)= post.title
+        if post.excerpt
+          .excerpt!= post.excerpt
+        if post.tags && post.tags.length
+          .tags!= list_tags(post.tags, {show_count: false,class: 'article-tag'})
         if post.date
           time(datetime=post.date.toJSON())= date(post.date, date_format)
 

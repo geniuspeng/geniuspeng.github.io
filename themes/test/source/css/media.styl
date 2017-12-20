@@ -3,31 +3,48 @@
     min-height 3.25rem
     align-items stretch
     display flex
-    nav#menu-inner
-      max-width 960px
-      width 960px
-      .navbar-burger
-        display none
-      .navbar-item, .navbar-link 
-        align-items center
-        display flex
-      .navbar-menu
-        display flex
-        align-items stretch
-        justify-content space-between
-        flex-grow 1
-        flex-shrink 0
-      .navbar-start 
-        justify-content flex-start
-        margin-right auto
-      .navbar-end 
-        justify-content flex-end
-        margin-left auto
-      .navbar-start, .navbar-end 
-        align-items stretch
-        display flex
-        a.button
-          width 20px
-          height 20px
-          background green
+  nav#menu-inner
+    .navbar-burger
+      display none
+    .navbar-item, .navbar-link 
+      align-items center
+      display flex
+    .navbar-menu
+      display flex
+      align-items stretch
+      justify-content space-between
+      flex-grow 1
+      flex-shrink 0
+    .navbar-start 
+      justify-content flex-start
+      margin-right auto
+    .navbar-end 
+      justify-content flex-end
+      margin-left auto
+    .navbar-start, .navbar-end 
+      align-items stretch
+      display flex
+      a.button
+        width 20px
+        height 20px
+        background green
+  .container
+    max-width 960px
+    width 960px
+@media screen and (min-width: 1216px)
+  .container
+    max-width 1152px
+    width 1152px
+@media screen and (min-width: 1408px)
+  .container
+    max-width 1344px
+    width 1344px
 // @media screen and (max-width: 1023px)
+@media screen and (max-width: 550px)
+  .magic-link
+    .link-item
+      width 49.5%
+      // width 33vw
+      height 20vw
+      max-height 290px
+      min-height 150px

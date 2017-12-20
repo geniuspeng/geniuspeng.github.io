@@ -19,10 +19,11 @@ html(lang=config.language).fixed-top
     link(rel="icon", href=config.root + 'img/favicon.png')
   body
     include ./navbar.pug
-    include ./slider.pug
-    include ./magic-link.pug
+    if page.prev == 0
+      include ./slider.pug
+      include ./magic-link.pug
     #content-outer
-      #content-inner
+      #content-inner.container
         if body
           div!= body
         else
