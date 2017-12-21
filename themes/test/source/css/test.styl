@@ -189,6 +189,14 @@ html.fixed-top
 .container
   margin 0 auto 
   position relative 
+.post
+  position relative
+  width 80%
+  max-width 750px
+  margin 4rem auto 
+  padding-bottom 4rem
+  border-bottom #ebf2f6 1px solid
+  word-wrap break-word
 nav#menu-inner
   align-items stretch
   display flex
@@ -237,18 +245,43 @@ nav#menu-inner
     height 20vw
     max-height 290px
     min-height 150px
-    &.red
-      background red
-    &.green
-      background green
-    &.blue
-      background blue 
-    &.grey
-      background grey
-    &.yellow 
-      background yellow
-    &.orange
-      background orange
+    &.link-item a
+      text-decoration none
+      display block
+      height 100%
+      background-repeat no-repeat
+      background-size 30%
+      background-position center
+      transition all .4s
+      &:hover 
+        text-decoration none
+        background-repeat no-repeat
+        background-position center
+        transform translate(0, -4px)
+    &.red a
+      background-image url(../images/vis.png)
+      &:hover
+        background-image url(../images/vis_hover.png)
+    &.green a
+      background-image url(../images/vis3.png)
+      &:hover
+        background-image url(../images/vis3_hover.png)
+    &.blue a
+      background-image url(../images/web.png)
+      &:hover
+        background-image url(../images/web_hover.png)
+    &.grey a
+      background-image url(../images/web3.png)
+      &:hover
+        background-image url(../images/web3_hover.png)
+    &.yellow a
+      background-image url(../images/yins.png)
+      &:hover
+        background-image url(../images/yins_hover.png)
+    &.orange a
+      background-image url(../images/app.png)
+      &:hover
+        background-image url(../images/app_hover.png)
     
 
 

@@ -11,6 +11,7 @@ doctype html
 html(lang=config.language).fixed-top
   head
     meta(charset='UTF-8')
+    meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1")
     title= pageTitle
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
       //- stylesheets list from config.yml
@@ -23,7 +24,7 @@ html(lang=config.language).fixed-top
       include ./slider.pug
       include ./magic-link.pug
     #content-outer
-      #content-inner.container
+      #content-inner.content
         if body
           div!= body
         else
