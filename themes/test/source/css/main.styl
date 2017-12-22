@@ -1,5 +1,6 @@
-@import "./code.styl"
-@import "./tag.styl"
+@import "_partial/code.styl"
+@import "_partial/post.styl"
+@import "_partial/tag.styl"
 
 @charset "UTF-8"; 
 @-webkit-keyframes spinAround 
@@ -167,6 +168,16 @@ table th
 /************************************************************************************
 主页面style
 *************************************************************************************/
+// body 
+//   height 100%
+//   max-height 100%
+//   font-family "Microsoft Yahei", serif
+//   font-weight 200
+//   letter-spacing 0.01rem
+//   font-size 1.125rem
+//   line-height 1.1em
+//   color #3a4145
+//   text-rendering geometricPrecision
 html.fixed-top
   padding-top 3.25rem
 #menu-outer
@@ -189,14 +200,7 @@ html.fixed-top
 .container
   margin 0 auto 
   position relative 
-.post
-  position relative
-  width 80%
-  max-width 750px
-  margin 4rem auto 
-  padding-bottom 4rem
-  border-bottom #ebf2f6 1px solid
-  word-wrap break-word
+
 nav#menu-inner
   align-items stretch
   display flex

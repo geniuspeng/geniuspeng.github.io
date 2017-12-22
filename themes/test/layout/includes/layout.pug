@@ -20,9 +20,7 @@ html(lang=config.language).fixed-top
     link(rel="icon", href=config.root + 'img/favicon.png')
   body
     include ./navbar.pug
-    if page.prev == 0
-      include ./slider.pug
-      include ./magic-link.pug
+    block magic
     #content-outer
       #content-inner.content
         if body

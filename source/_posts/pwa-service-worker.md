@@ -17,6 +17,7 @@ Web Worker为Web内容在后台线程中运行脚本提供了一种简单的方�
 - WindowTimers.setTimeout 和 WindowTimers.setInterval
 - XMLHttpRequest
 - Array, Date, Math, String
+
 在一个worker中最主要的你不能做的事情就是直接影响父页面。包括操作父页面的节点以及使用页面中的对象。比如通过PostMessage方法。
 目前主要的web worker大致有以下几种：
 - Worker（专用worker）：正如名字一样，就是一个正常的worker，可以通过var myWorker = new Worker('worker.js')穿件;

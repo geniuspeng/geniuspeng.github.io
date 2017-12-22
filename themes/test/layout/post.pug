@@ -1,7 +1,15 @@
 extends includes/layout.pug
 
 block content
-  article#post
-    h1= page.title
-    != page.content
+  .post-wrap
+    article#post.post
+      .post-header
+        h1.post-title= page.title
+      .post-meta
+        if page.tags && page.tags.length
+          .tags!= list_tags(page.tags, {show_count: false,class: 'article-tag'})
+        if page.date
+          time(datetime=page.date.toJSON())= date(page.date, date_format)
+      section.post-content
+        != page.content
   //- include includes/pagination.pug

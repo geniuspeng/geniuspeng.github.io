@@ -1,5 +1,8 @@
 extends includes/layout.pug
-
+block magic
+  if page.prev == 0
+    include includes/slider.pug
+    include includes/magic-link.pug
 block content
   include includes/recent-posts.pug
   include includes/pagination.pug

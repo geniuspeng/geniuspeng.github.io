@@ -531,10 +531,10 @@ function handle(handler) {
 ```
 嗯就酱~~~~参考链接：
 
--[Promise MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
--[阮一峰--ES6标准——Promise](http://es6.ruanyifeng.com/?search=mixin&x=0&y=0#docs/promise)
--[implements Promise in a very similar way.](https://github.com/then/promise/blob/master/src/core.js)
--[promisejs.org](https://www.promisejs.org/)
--[【翻译】Promises/A+规范](http://www.ituring.com.cn/article/66566)
+- [Promise MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- [阮一峰--ES6标准——Promise](http://es6.ruanyifeng.com/?search=mixin&x=0&y=0#docs/promise)
+- [implements Promise in a very similar way.](https://github.com/then/promise/blob/master/src/core.js)
+- [promisejs.org](https://www.promisejs.org/)
+- [【翻译】Promises/A+规范](http://www.ituring.com.cn/article/66566)
 
 

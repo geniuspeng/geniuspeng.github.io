@@ -4,11 +4,15 @@ if page.posts.length > 0
     h1 Recent Posts
     each post in page.posts.sort('date', -1).toArray()
       .recent-post-item.post
-        a(href=config.root + post.path)= post.title
-        if post.excerpt
-          .excerpt!= post.excerpt
-        if post.tags && post.tags.length
-          .tags!= list_tags(post.tags, {show_count: false,class: 'article-tag'})
-        if post.date
-          time(datetime=post.date.toJSON())= date(post.date, date_format)
+        .post-header
+          h2.post-title
+            a(href=config.root + post.path)= post.title
+        .post-excerpt
+          if post.excerpt
+            p!= post.excerpt
+        .post-meta
+          if post.tags && post.tags.length
+            .tags!= list_tags(post.tags, {show_count: false,class: 'article-tag'})
+          if post.date
+            time(datetime=post.date.toJSON())= date(post.date, date_format)
 

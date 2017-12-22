@@ -14,7 +14,7 @@ favicon: /favicon.ico
 
 # stylesheets loaded in the <head>
 stylesheets:
-- /css/test.css
+- /css/main.css
 - /css/media.css
 
 # scripts loaded in the end of the body
