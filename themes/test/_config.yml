@@ -41,36 +41,47 @@ navs:
       img: /images/navs/steam.png
       title: Steam
       desc: 一个关于分享和探索的地方
-- label: 最新推荐
+- label: 门户社区
   list:
-    - title: 36氪
-      link: www.36kr.com
-      img: /images/navs/36kr.png
-      desc: 为创业者提供最好的产品和服务
-    - title: 36氪
-      link: www.36kr.com
-      img: /images/navs/36kr.png
-      desc: 为创业者提供最好的产品和服务
-    - title: 36氪
-      link: www.36kr.com
-      img: /images/navs/36kr.png
-      desc: 为创业者提供最好的产品和服务
-    - title: 36氪
-      link: www.36kr.com
-      img: /images/navs/36kr.png
-      desc: 为创业者提供最好的产品和服务
-    - title: 36氪
-      link: www.36kr.com
-      img: /images/navs/36kr.png
-      desc: 为创业者提供最好的产品和服务
-    - title: 36氪
-      link: www.36kr.com
-      img: /images/navs/36kr.png
-      desc: 为创业者提供最好的产品和服务
-    - title: 36氪
-      link: www.36kr.com
-      img: /images/navs/36kr.png
-      desc: 为创业者提供最好的产品和服务
+    - title: 掘金
+      link: https://juejin.im/
+      img: /images/navs/gold.png
+      desc: 一个帮助开发者成长的社区
+    - title: SegmentFault
+      link: https://segmentfault.com/
+      img: /images/navs/segmentfault.png
+      desc: 一个专注解决变成问题，提高开发者技术的社区
+    - title: Stack Overflow
+      link: https://stackoverflow.com/
+      img: /images/navs/stackoverflow.png
+      desc: 编程技术问答网站
+    - title: CNode
+      link: https://cnodejs.org/
+      img: /images/navs/cnodejs.png
+      desc: NodeJS专业中文社区
+    - title: W3Cplus
+      link: https://www.w3cplus.com/
+      img: /images/navs/w3cplus.png
+      desc: 引领web前沿,打造前端精品教程
+    - title: W3Ctech
+      link: https://w3ctech.com/
+      img: /images/navs/w3ctech.png
+      desc: 中国最大的前端技术社区
+    - title: HTML5梦工厂
+      link: http://www.html5dw.com/
+      img: /images/navs/html5dw.png
+      desc: HTML5社区
+- label: 代码管理
+  list:
+    - link: https://github.com/
+      img: /images/navs/github.png
+      title: GITHUB
+      desc: 最大的开源项目git托管平台
+    - link: https://coding.net/
+      img: /images/navs/coding.png
+      title: 码市
+      desc: 国内最大的git平台
+
 materials:
 - text: 字体（平方）
   subcode: qiji
