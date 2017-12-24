@@ -1,0 +1,15 @@
+.nav-wrap.container
+  .panel
+    each v, i in theme.navs
+      .panel-title.card= v.label
+      .panel-body
+        each item in v.list
+          .panel-item
+            .card
+              a.card-heading(title=url_for(item.link),href=url_for(item.link), target="_blank")
+                span.card-icon
+                  img(src=url_for(item.img))
+                span.card-title= item.title
+              .card-body= item.desc
+              .card-footer
+

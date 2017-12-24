@@ -1,6 +1,7 @@
 @import "_partial/code.styl"
 @import "_partial/post.styl"
 @import "_partial/tag.styl"
+@import "_partial/magic.styl"
 
 @charset "UTF-8"; 
 @-webkit-keyframes spinAround 
@@ -200,33 +201,18 @@ html.fixed-top
 .container
   margin 0 auto 
   position relative 
-.card 
-  background #fafafa
-  margin-bottom 20px
-  border-radius 3px
-  margin-left 2px
-  margin-right 2px
-  position relative
-  overflow hidden
-  border-bottom 1px solid #e5e5e5
-  transition all .2s
-  .card-heading 
-    overflow hidden
-    margin-bottom 7px
-    display block
-    cursor pointer
-    padding 10px 18px 0
-    color #333
-  .card-body 
-    color rgba(102, 102, 102, 0.55)
-    font-size 12px
-    white-space nowrap
-    text-overflow ellipsis
-    overflow hidden
-    margin-bottom 2px
-    padding 0 18px
-  .card-footer
-    padding 0 18px 8px
+#pagination
+  .pagenav
+    text-align center
+    span
+    a
+      margin 0 10px
+#bottom-outer
+  margin-top 20px
+  margin-bottom 40px
+  #bottom-inner
+    text-align center
+
 
 nav#menu-inner
   align-items stretch
@@ -315,8 +301,52 @@ nav#menu-inner
         background-image url(../images/app_hover.png)
     
 
+/*archive页面*/
+.category-list
+.tag-list
+  width 100%
+  margin 1em auto
+.category-list-item
+.tag-list-item
+  display inline-block
+  font-size 1.25em
+  color #fff
+  background-color #70f
+  text-decoration none
+  padding .5em 1em
+  border-radius 1em
+  margin .125em
+ul.archive-list 
+  text-align left
+  padding 0
+  margin 0
+  width 50%
+  li.archive-list-item
+    padding 1em
+    margin-bottom .125em
+    display block
+    list-style none
+    text-transform uppercase
+    visibility hidden
+    animation rolldown .7s 1
+    transform-origin 50% 0
+    animation-fill-mode forwards
+    &:nth-child(2n) 
+      background-color #444
+    &:nth-child(2n 
+      & + 1) 
+        background-color #333
 
-
+@keyframes rolldown 
+  0%
+    visibility visible
+    transform rotateX(180deg) perspective(500px)
+  70% 
+    visibility visible
+    transform rotateX(-20deg)
+  100% 
+    visibility visible
+    transform rotateX(0deg)
 
 
 
@@ -345,5 +375,7 @@ nav#menu-inner
 ::-webkit-scrollbar-resizer 
   &:vertical 
     background-color #ff6e00
+
+
     
-@import "navs/navs.styl"
+@import "extra/extra.styl"

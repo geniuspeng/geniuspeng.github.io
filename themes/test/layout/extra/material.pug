@@ -1,0 +1,12 @@
+.material-wrap.container
+  .panel
+    .panel-title.card 曾经翘首以盼，现在触手可得
+    .panel-body
+      each item in theme.materials
+        .panel-large-item
+          .tool.tool-bg
+            .tool-imgs()
+              #texts= item.text
+              #textse 提取码：#{item.subcode}
+              a#local.local(href=url_for(item.link),title="去下载") 下载
+

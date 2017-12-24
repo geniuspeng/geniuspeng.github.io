@@ -19,4 +19,65 @@ stylesheets:
 
 # scripts loaded in the end of the body
 scripts:
-- /js/test.js
+- /js/main.js
+
+# navigations config
+navs:
+- label: 最新推荐
+  list:
+    - link: www.36kr.com
+      img: /images/navs/36kr.png
+      title: 36氪
+      desc: 为创业者提供最好的产品和服务
+    - link: https://www.v2ex.com
+      img: /images/navs/v2ex.png
+      title: V2EX
+      desc: 一个关于分享和探索的地方
+    - link: http://www.arinchina.com
+      img: /images/navs/ar.png
+      title: ARinChina
+      desc: (AR)增强现实(VR)虚拟现实|中国第一AR/VR门户网
+    - link: http://store.steampowered.com/
+      img: /images/navs/steam.png
+      title: Steam
+      desc: 一个关于分享和探索的地方
+- label: 最新推荐
+  list:
+    - title: 36氪
+      link: www.36kr.com
+      img: /images/navs/36kr.png
+      desc: 为创业者提供最好的产品和服务
+    - title: 36氪
+      link: www.36kr.com
+      img: /images/navs/36kr.png
+      desc: 为创业者提供最好的产品和服务
+    - title: 36氪
+      link: www.36kr.com
+      img: /images/navs/36kr.png
+      desc: 为创业者提供最好的产品和服务
+    - title: 36氪
+      link: www.36kr.com
+      img: /images/navs/36kr.png
+      desc: 为创业者提供最好的产品和服务
+    - title: 36氪
+      link: www.36kr.com
+      img: /images/navs/36kr.png
+      desc: 为创业者提供最好的产品和服务
+    - title: 36氪
+      link: www.36kr.com
+      img: /images/navs/36kr.png
+      desc: 为创业者提供最好的产品和服务
+    - title: 36氪
+      link: www.36kr.com
+      img: /images/navs/36kr.png
+      desc: 为创业者提供最好的产品和服务
+materials:
+- text: 字体（平方）
+  subcode: qiji
+  link: https://pan.baidu.com/s/1cpmjfw
+- text: 字体（平方）
+  subcode: qiji
+  link: https://pan.baidu.com/s/1cpmjfw
+- text: 字体（平方）
+  subcode: qiji
+  link: https://pan.baidu.com/s/1cpmjfw

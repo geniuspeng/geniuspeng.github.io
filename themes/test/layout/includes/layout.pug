@@ -35,8 +35,8 @@ html(lang=config.language).fixed-top
         a(href='http://hexo.io')
           span hexo blog framework
         span .
-        br
-        a(href=config.root) Home
+        //- br
+        //- a(href=config.root) Home
     if theme.scripts !== undefined && theme.scripts.length > 0
       //- scripts list from config.yml
       each url in theme.scripts

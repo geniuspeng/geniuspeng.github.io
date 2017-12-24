@@ -29,8 +29,8 @@
         height 20px
         background green
   .container
-    max-width 960px
-    width 960px
+    max-width 1000px
+    width 1000px
 @media screen and (min-width: 1216px)
   .container
     max-width 1152px
@@ -40,23 +40,33 @@
     max-width 1344px
     width 1344px
 @media screen and (max-width: 1250px)
-  .nav-panel 
+  .panel 
     margin-bottom 1px
     padding-bottom 12px
     padding-top 30px
     width 97%
-    // .panel-item
-    //   width 25%
-@media screen and (max-width: 767px)
-  .nav-panel
-    padding 0
-    // .panel-item
-    //   width 33%
+    .panel-item
+      width 25%
+    .panel-large-item
+      width 50%
+// @media screen and (max-width: 1024px)
+//   .panel 
+//     .panel-item
+//       width 20%
+
 @media only screen and (max-width: 900px)
   .post 
     font-size 0.95em
     .post-title
       font-size 2rem
+  .panel 
+    .panel-item
+      width 33.3%
+@media screen and (max-width: 767px)
+  .panel
+    padding 0
+    .panel-item
+      width 50%
 @media screen and (max-width: 550px)
   .magic-link
     .link-item
@@ -80,6 +90,10 @@
     .post-meta
       font-size .82rem
       margin-top .625rem
-  .nav-panel
+  .panel
+    .panel-large-item
+      width 100%
+@media screen and (max-width: 480px)
+  .panel
     .panel-item
       width 100%

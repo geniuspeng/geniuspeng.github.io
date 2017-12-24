@@ -1,4 +1,3 @@
-
 extends includes/layout.pug
 
 block content
@@ -6,7 +5,7 @@ block content
   - var tagsList = list_tags({ show_count: false })
   - var archivesList = list_archives({ show_count: false })
 
-  div.archive
+  div.archive.container
     if !is_year()
 
       h1 Archives
