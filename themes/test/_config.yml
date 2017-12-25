@@ -81,6 +81,16 @@ navs:
       img: /images/navs/coding.png
       title: 码市
       desc: 国内最大的git平台
+- label: 代码管理
+  list:
+    - link: https://github.com/
+      img: /images/navs/github.png
+      title: GITHUB
+      desc: 最大的开源项目git托管平台
+    - link: https://coding.net/
+      img: /images/navs/coding.png
+      title: 码市
+      desc: 国内最大的git平台
 
 materials:
 - text: 字体（平方）
