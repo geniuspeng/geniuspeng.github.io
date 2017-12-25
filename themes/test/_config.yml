@@ -67,10 +67,6 @@ navs:
       link: https://w3ctech.com/
       img: /images/navs/w3ctech.png
       desc: 中国最大的前端技术社区
-    - title: HTML5梦工厂
-      link: http://www.html5dw.com/
-      img: /images/navs/html5dw.png
-      desc: HTML5社区
 - label: 代码管理
   list:
     - link: https://github.com/
@@ -81,16 +77,124 @@ navs:
       img: /images/navs/coding.png
       title: 码市
       desc: 国内最大的git平台
-- label: 代码管理
+- label: 框架类库
   list:
-    - link: https://github.com/
-      img: /images/navs/github.png
-      title: GITHUB
-      desc: 最大的开源项目git托管平台
-    - link: https://coding.net/
-      img: /images/navs/coding.png
-      title: 码市
-      desc: 国内最大的git平台
+    - link: https://cn.vuejs.org/
+      img: /images/navs/vue.png
+      title: VUE
+      desc: 渐进式JavaScript 框架
+    - link: https://reactjs.org/
+      img: /images/navs/react.png
+      title: REACT
+      desc: A JavaScript library for building user interfaces
+    - link: https://cn.vuejs.org/
+      img: /images/navs/vue.png
+      title: VUE
+      desc: 渐进式JavaScript 框架
+    - link: https://reactnative.cn/
+      img: /images/navs/react-native.png
+      title: REACT NATIVE
+      desc: 使用react构建原生app
+    - link: https://www.jquery123.com/
+      img: /images/navs/jquery.png
+      title: Jquery
+      desc: 优秀的前端代码类库
+    - link: http://reactivex.io/rxjs/
+      img: /images/navs/rxjs.png
+      title: rxjs
+      desc: The ReactiveX library for JavaScript.
+- label: Web框架
+  list:
+    - link: http://www.expressjs.com.cn/
+      img: /images/navs/express.png
+      title: EXPRESS
+      desc: 基于 Node.js 平台，快速、开放、极简的 web 开发框架
+    - link: https://koa.bootcss.com/
+      img: /images/navs/koa.png
+      title: KOA
+      desc: A JavaScript library for building user interfaces
+    - link: https://eggjs.org/
+      img: /images/navs/egg.svg
+      title: EGG
+      desc: 为企业级框架和应用而生
+    - link: https://thinkjs.org/
+      img: /images/navs/thinkjs.png
+      title: ThinkJs
+      desc: 使用 ES6/7 特性开发 Node.js 项目,支持 TypeScript
+    - link: https://zh.nuxtjs.org/
+      img: /images/navs/nuxt.png
+      title: Nuxt
+      desc: VueJS通用应用框架（SSR）
+- label: 数据可视化
+  list:
+    - link: https://antv.alipay.com/zh-cn/index.html#
+      img: /images/navs/g2.png
+      title: G2
+      desc: 蚂蚁金服全新一代数据可视化图表库
+    - link: https://d3js.org/
+      img: /images/navs/d3.png
+      title: D3
+      desc: 基于SVG和Canvas的数据可视化js库
+    - link: http://www.highcharts.com/
+      img: /images/navs/highcharts.png
+      title: HighCharts
+      desc: Make your data come alive
+    - link: http://echarts.baidu.com/
+      img: /images/navs/echarts.png
+      title: Echart
+      desc: 百度数据可视化图标库
+- label: 构建打包
+  list:
+    - link: https://webpack.js.org/
+      img: /images/navs/webpack.png
+      title: Webpack
+      desc: 新一代js模块化构建打包工具
+    - link: https://www.gulpjs.com.cn/
+      img: /images/navs/gulp.png
+      title: Gulp
+      desc: 用自动化构建工具增强你的工作流程
+- label: 字体图标
+  list:
+    - link: http://iconfont.cn/
+      img: /images/navs/iconfont.png
+      title: Icon Font
+      desc: 阿里巴巴矢量图标库
+    - link: http://www.bootcss.com/p/font-awesome/
+      img: /images/navs/font-awesome.png
+      title: Font Awesome
+      desc: 基于Bootstrap的完美图标字体
+- label: 游戏引擎
+  list:
+    - link: http://www.cocos.com/docs/?type=cocos2d-js#anysdk
+      img: /images/navs/cocos2dx.png
+      title: cocos2d-js
+      desc: cocos游戏引擎js实现
+    - link: http://phaser.io/
+      img: /images/navs/phaserjs.png
+      title: Phaser
+      desc: 桌面和移动端的HTML5游戏引擎框架
+    - link: https://www.egret.com/
+      img: /images/navs/egret.png
+      title: 白鹭
+      desc: 全球最受欢迎的HTML5游戏引擎
+    - link: https://playcanvas.com/explore
+      img: /images/navs/playcanvas.png
+      title: PlayCanvas
+      desc: 3D HTML5 & WebGL 游戏引擎
+- label: 其他推荐
+  list:
+    - link: https://docs.docker.com/
+      img: /images/navs/docker.png
+      title: Docker
+      desc: 轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器
+    - link: http://guide.daocloud.io/dcs
+      img: /images/navs/daocloud.png
+      title: Daocloud文档
+      desc: Daocloud-企业级云计算领域的创新领导者
+    - link: https://developer.mozilla.org/zh-CN/
+      img: /images/navs/mdn.png
+      title: MDN web文档
+      desc: 源于开发者，服务开发者
 
 materials:
 - text: 字体（平方）

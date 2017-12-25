@@ -100,35 +100,16 @@ var utils = {
 
 }
 
-// basic setup  :) 
+// 声明  全局变量
 var slider = document.getElementById("slider");
-if (slider) {
-  var canvas = document.getElementById("canvas");
-  var ctx = canvas.getContext('2d');
-  var W = canvas.width = slider.offsetWidth;
-  var H = canvas.height = slider.offsetHeight;
-
-  var gridX = 5;
-  var gridY = 5;
-
-  var element2 = document.getElementById("2");
-  var element3 = document.getElementById("3");
-  var element4 = document.getElementById("4");
-  var element5 = document.getElementById("5");
-  var element6 = document.getElementById("6");
-
-  var gravity = parseFloat(element2.value);
-  var duration =  parseFloat(element3.value);
-  var resolution = parseFloat(element4.value);
-  var speed = parseFloat(element5.value);
-  var radius = parseFloat(element5.value);
-}
+var canvas, ctx, W, H, gridX, gridY, gravity, duration, resolution, speed, radius;
+var timer;
 
 
 function shape(x, y, texte) {
   this.x = x;
   this.y = y;
-  this.size = 150;
+  this.size = W/6;
 
   this.text = texte;
   this.placement = [];
@@ -261,15 +242,30 @@ function particle(x, y, type) {
 }
 
 if (slider) {
-  // function init () {
-  var fieldvalue = document.getElementById("message");
+  function init () {
+    canvas = document.getElementById("canvas");
+    ctx = canvas.getContext('2d');
+    W = canvas.width = slider.offsetWidth;
+    H = canvas.height = slider.offsetHeight;
 
-  var message = new shape(W / 2, H / 2 + 50, fieldvalue.value);
+    gridX = 5;
+    gridY = 5;
 
-  message.getValue();
+    gravity = parseFloat(document.getElementById("2").value);
+    duration =  parseFloat(document.getElementById("3").value);
+    resolution = parseFloat(document.getElementById("4").value);
+    speed = parseFloat(document.getElementById("5").value);
+    radius = parseFloat(document.getElementById("6").value);
 
-  update();  
-  // }
+    fieldvalue = document.getElementById("message");
+
+    message = new shape(W / 2, H / 2 + 50, fieldvalue.value);
+
+    message.getValue();
+
+    update();  
+  }
+  init()
 }
 
 
@@ -293,7 +289,8 @@ function changeV() {
 
 var fps = 100;
 function update() {
-  setTimeout(function() {
+  clearTimeout(timer);
+  timer = setTimeout(function() {
     ctx.clearRect(0, 0, W, H);
 
 
@@ -303,4 +300,9 @@ function update() {
 
     requestAnimationFrame(update);
   }, 1000 / fps);
+}
+
+window.onresize = function () {
+  console.log('resize')
+  init()
 }
