@@ -1,8 +1,9 @@
 extends includes/layout.pug
 
 block content
-  article#page
-    h1= page.title
-    != page.content
-  include includes/pagination.pug
+  .post-wrap
+    article#page.post
+      h1= page.title
+      != page.content
+  //- include includes/pagination.pug
 

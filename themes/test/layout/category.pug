@@ -1,16 +1,42 @@
 extends includes/layout.pug
 
 block content
-  #category
-    h1= page.category
-    - page.posts.each(function(article){
-      .category-item
-        if article.link
-          a(href=url_for(article.link) target="_blank")
-            = article.title || 'No Title'
-        else
-          a(href=url_for(article.path))= article.title || 'No Title'
-        time(datetime=date_xml(article.date))= date(article.date)
-    - })
+  #category.main-content   
+    .post-collapse     
+      .time-line-start
+      .archive-page-counter #{ page.category }分类共计 #{page.posts.length} 篇日志，加油！
+      each post in page.posts.toArray()
+        - var currentYear;
+        - post.year = date(post.date, 'YYYY');
+        if post.year !== currentYear
+          - currentYear = post.year;
+          .time-title
+            a.time-title-link(href=url_for(config.archive_dir + '/' + currentYear))
+              != currentYear
+            .time-line-bg
+              span.time-line-disc
+        .article-archive-wrap
+          .article-archive-header
+            span.title-date=date(post.date, 'MM-DD')
+            .article-achive-title
+              if post.link
+                a.title-link(href=post.link, target='_blank')
+                  !=post.title
+              else
+                - var rulRegex = /(\/index\.html?$)|(\/?$)/;
+                - var path = post.path.replace(rulRegex, '');
+                a.title-link(href=url_for(path), target='_blank')
+                  !=post.title
+  //- #category
+  //-   h1= page.category
+  //-   - page.posts.each(function(article){
+  //-     .category-item
+  //-       if article.link
+  //-         a(href=url_for(article.link) target="_blank")
+  //-           = article.title || 'No Title'
+  //-       else
+  //-         a(href=url_for(article.path))= article.title || 'No Title'
+  //-       time(datetime=date_xml(article.date))= date(article.date)
+  //-   - })
   include includes/pagination.pug
 
