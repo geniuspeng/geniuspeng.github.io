@@ -303,6 +303,5 @@ function update() {
 }
 
 window.onresize = function () {
-  console.log('resize')
-  init()
+  init && init();
 }

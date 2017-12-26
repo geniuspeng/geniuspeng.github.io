@@ -8,50 +8,87 @@ block content
   div.archive.container
     if !is_year()
 
-      h1 Archives
-
-      if theme.atom
-        p The feed is available via&nbsp;
-          a(href=theme.atom) atom
-          span .
-        br
-
-      aside
-        h2 Categories
-        if categoriesList
-          != categoriesList
-        else
-          p None.
-      br
-
-      aside
-        h2 Tags
-        if tagsList
-          != tagsList
-        else
-          p None.
-      br
-
-      aside
-        h2 Archives
-        if archivesList
-          != archivesList
-        else
-          p None.
-      br
+      .main-content
+        .post-collapse
+          .time-line-start
+          .archive-page-counter 目前共计 #{site.posts.length} 篇日志，加油！
+          - var postArray = page.posts.sort('date', -1).toArray()
+          each post in postArray
+            - var currentYear;
+            - post.year = date(post.date, 'YYYY');
+            if post.year !== currentYear
+              - currentYear = post.year;
+              .time-title
+                a.time-title-link(href=url_for(config.archive_dir + '/' + currentYear))
+                  != currentYear
+                .time-line-bg
+                  span.time-line-disc
+            .article-archive-wrap
+              .article-archive-header
+                span.title-date=date(post.date, 'MM-DD')
+                .article-achive-title
+                  if post.link
+                    a.title-link(href=post.link)
+                      !=post.title
+                  else
+                    - var rulRegex = /(\/index\.html?$)|(\/?$)/;
+                    - var path = post.path.replace(rulRegex, '');
+                    a.title-link(href=url_for(path))
+                      !=post.title
+      div.categories-wrap
+        aside.archive-categories
+          h2 分类
+          if categoriesList
+            != categoriesList
+          else
+            p None.
+      div.tags-wrap
+        aside.archive-tags
+          h2 标签
+          if tagsList
+            != tagsList
+          else
+            p None.
 
     else
 
-      h1= page.month + '/' + page.year
+      .main-content   
+        .post-collapse     
+          .time-line-start
+          .archive-page-counter #{ page.year }年共计 #{page.posts.length} 篇日志，加油！
+          each post in page.posts.toArray()
+            - var currentYear;
+            - post.year = date(post.date, 'YYYY');
+            if post.year !== currentYear
+              - currentYear = post.year;
+              .time-title
+                a.time-title-link(href=url_for(config.archive_dir + '/' + currentYear))
+                  != currentYear
+                .time-line-bg
+                  span.time-line-disc
+            .article-archive-wrap
+              .article-archive-header
+                span.title-date=date(post.date, 'MM-DD')
+                .article-achive-title
+                  if post.link
+                    a.title-link(href=post.link, target='_blank')
+                      !=post.title
+                  else
+                    - var rulRegex = /(\/index\.html?$)|(\/?$)/;
+                    - var path = post.path.replace(rulRegex, '');
+                    a.title-link(href=url_for(path), target='_blank')
+                      !=post.title
 
-      - page.posts.each(function(article){
-        .archive-list-item
-          if article.link
-            a(href=url_for(article.link) target="_blank")= article.title || 'No Title'
-          else
-            a(href=url_for(article.path))= article.title || 'No Title'
-          time(datetime=date_xml(article.date))= date(article.date)
-      - })
+      //- h1= page.month + '/' + page.year
+
+      //- - page.posts.each(function(article){
+      //-   .archive-list-item
+      //-     if article.link
+      //-       a(href=url_for(article.link) target="_blank")= article.title || 'No Title'
+      //-     else
+      //-       a(href=url_for(article.path))= article.title || 'No Title'
+      //-     time(datetime=date_xml(article.date))= date(article.date)
+      //- - })
 
     include includes/pagination.pug
 

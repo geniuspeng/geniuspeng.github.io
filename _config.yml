@@ -123,48 +123,48 @@ deploy:
   branch: master
 
 # PWA setting
-pwa:
-  manifest:
-    path: /manifest.json
-    body:
-      name: Blog
-      short_name: Blog
-      icons:
-        - src: /images/icons/icon-128x128.png
-          sizes: 128x128
-          type: image/png
-        - src: /images/icons/icon-144x144.png
-          sizes: 144x144
-          type: image/png
-        - src: /images/icons/icon-152x152.png
-          sizes: 152x152
-          type: image/png
-        - src: /images/icons/icon-192x192.png
-          sizes: 192x192
-          type: image/png
-        - src: /images/icons/icon-256x256.png
-          sizes: 256x256
-          type: image/png
-      start_url: /
-      display: standalone
-      background_color: '#3E4EB8'
-      theme_color: '#2F3BA2'
-  serviceWorker:
-    path: /sw.js
-    preload:
-      urls:
-        - /
-        - /index.html
-        - /js/main.js
-        - /css/main.css
-      posts: 5
-    opts:
-      networkTimeoutSeconds: 5
-    routes:
-      - pattern: !!js/regexp /hm.baidu.com/
-        strategy: networkOnly
-      - pattern: !!js/regexp /.*\.(js|css|jpg|jpeg|png|gif)$/
-        strategy: cacheFirst
-      - pattern: !!js/regexp /index.html$/
-        strategy: networkFirst
-  priority: 5
+# pwa:
+#   manifest:
+#     path: /manifest.json
+#     body:
+#       name: Blog
+#       short_name: Blog
+#       icons:
+#         - src: /images/icons/icon-128x128.png
+#           sizes: 128x128
+#           type: image/png
+#         - src: /images/icons/icon-144x144.png
+#           sizes: 144x144
+#           type: image/png
+#         - src: /images/icons/icon-152x152.png
+#           sizes: 152x152
+#           type: image/png
+#         - src: /images/icons/icon-192x192.png
+#           sizes: 192x192
+#           type: image/png
+#         - src: /images/icons/icon-256x256.png
+#           sizes: 256x256
+#           type: image/png
+#       start_url: /
+#       display: standalone
+#       background_color: '#3E4EB8'
+#       theme_color: '#2F3BA2'
+#   serviceWorker:
+#     path: /sw.js
+#     preload:
+#       urls:
+#         - /
+#         - /js/main.js
+#         - /css/main.css
+#         - /manifest.json
+#       posts: 5
+#     opts:
+#       networkTimeoutSeconds: 5
+#     routes:
+#       - pattern: !!js/regexp /hm.baidu.com/
+#         strategy: networkOnly
+#       - pattern: !!js/regexp /.*\.(js|css|jpg|jpeg|png|gif)$/
+#         strategy: cacheFirst
+#       - pattern: !!js/regexp /index.html$/
+#         strategy: networkFirst
+#   priority: 5

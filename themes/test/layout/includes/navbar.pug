@@ -9,7 +9,7 @@
       .navbar-start
         each url, label in theme.menu
           .navbar-item
-            a.navbar-link(href=url)= label
+            a.navbar-link(href=url_for(url))= label
       .navbar-end
         .navbar-item
           a.button 

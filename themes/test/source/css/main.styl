@@ -1,6 +1,7 @@
 @import "_partial/code.styl"
 @import "_partial/post.styl"
 @import "_partial/tag.styl"
+@import "_partial/archive.styl"
 @import "_partial/magic.styl"
 
 @charset "UTF-8"; 
@@ -212,6 +213,7 @@ html.fixed-top
   margin-bottom 40px
   #bottom-inner
     text-align center
+    font-size 14px
 
 
 nav#menu-inner
@@ -305,40 +307,50 @@ nav#menu-inner
     
 
 /*archive页面*/
+.archive-categories
+  margin-top 40px
+.archive-tags
+  margin-top 20px
 .category-list
 .tag-list
   width 100%
-  margin 1em auto
+  margin 0 0 1em
 .category-list-item
 .tag-list-item
   display inline-block
-  font-size 1.25em
-  color #fff
-  background-color #70f
   text-decoration none
-  padding .5em 1em
-  border-radius 1em
-  margin .125em
-ul.archive-list 
-  text-align left
-  padding 0
-  margin 0
-  width 50%
-  li.archive-list-item
-    padding 1em
-    margin-bottom .125em
-    display block
-    list-style none
-    text-transform uppercase
-    visibility hidden
-    animation rolldown .7s 1
-    transform-origin 50% 0
-    animation-fill-mode forwards
-    &:nth-child(2n) 
-      background-color #444
-    &:nth-child(2n 
-      & + 1) 
-        background-color #333
+  font-weight normal
+  font-size 10px
+  color #fff
+  height 18px
+  line-height 18px
+  padding 0 5px 0px 10px
+  position relative
+  border-radius 0 5px 5px 0
+  margin 5px 9px 5px 8px
+  font-family Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace
+  background #39b3d7
+  &:before 
+    content " "
+    width 0px
+    height 0px
+    position absolute
+    top 0
+    left -18px
+    border 9px solid transparent
+    border-right-color #39b3d7
+  &:after 
+    content " "
+    width 4px
+    height 4px
+    background-color #fff
+    border-radius 4px
+    box-shadow 0px 0px 0px 1px rgba(0,0,0,0.3)
+    position absolute
+    top 7px
+    left 2px
+
+
 
 @keyframes rolldown 
   0%
@@ -355,29 +367,29 @@ ul.archive-list
 
 
 /*滚动条 样式*/
-::-webkit-scrollbar 
-  width 5px
-  height 5px
-::-webkit-scrollbar-button 
-  &:vertical 
-    display none
-::-webkit-scrollbar-track 
-  &:vertical 
-    background-color black
-::-webkit-scrollbar-track-piece 
-  background #eaeaea
-::-webkit-scrollbar-thumb 
-  &:vertical 
-    background-color #d1ab73
-    border-radius 4px
-    &:hover 
-      background-color #c49e66
-::-webkit-scrollbar-corner 
-  &:vertical 
-    background-color #535353
-::-webkit-scrollbar-resizer 
-  &:vertical 
-    background-color #ff6e00
+// ::-webkit-scrollbar 
+//   width 5px
+//   height 5px
+// ::-webkit-scrollbar-button 
+//   &:vertical 
+//     display none
+// ::-webkit-scrollbar-track 
+//   &:vertical 
+//     background-color black
+// ::-webkit-scrollbar-track-piece 
+//   background #eaeaea
+// ::-webkit-scrollbar-thumb 
+//   &:vertical 
+//     background-color #d1ab73
+//     border-radius 4px
+//     &:hover 
+//       background-color #c49e66
+// ::-webkit-scrollbar-corner 
+//   &:vertical 
+//     background-color #535353
+// ::-webkit-scrollbar-resizer 
+//   &:vertical 
+//     background-color #ff6e00
 
 
     
