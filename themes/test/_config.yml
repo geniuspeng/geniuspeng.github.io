@@ -200,6 +200,10 @@ navs:
       img: /images/navs/mdn.png
       title: MDN web文档
       desc: 源于开发者，服务开发者
+    - link: https://resizeappicon.com/
+      img: /images/navs/highcharts.png
+      title: App Icon Resizer
+      desc: 一键在线生成各个大小图标
 
 materials:
 - text: Mobi-scroll破解版

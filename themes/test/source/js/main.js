@@ -328,10 +328,8 @@ var appendArrow = function() {
   }
 }
 var myScrollTo = function(target, speed, fn){
-  console.log(target)
   timer && clearTimeout(timer);
   var _top = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop || 0;
-  console.log(_top)
   if (_top < target) {
     _top += speed;
     window.scrollTo(0,_top);
