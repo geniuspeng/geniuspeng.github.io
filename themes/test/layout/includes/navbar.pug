@@ -10,10 +10,11 @@
         span
         span
     #navMenuIndex.navbar-menu
+      - var curPage = is_home() ? '/' : ((is_archive() || is_post()) ? '/archives' : '/about')
       .navbar-start
         each url, label in theme.menu
           .navbar-item
-            a.navbar-link(href=url_for(url))= label
+            a.navbar-link(href=url_for(url), class=(curPage==url)?'active':'')= label
       //- .navbar-end
       //-   .navbar-item
       //-     a.button 

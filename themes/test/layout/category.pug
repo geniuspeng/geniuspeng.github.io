@@ -20,12 +20,12 @@ block content
             span.title-date=date(post.date, 'MM-DD')
             .article-achive-title
               if post.link
-                a.title-link(href=post.link, target='_blank')
+                a.title-link(href=post.link)
                   !=post.title
               else
                 - var rulRegex = /(\/index\.html?$)|(\/?$)/;
                 - var path = post.path.replace(rulRegex, '');
-                a.title-link(href=url_for(path), target='_blank')
+                a.title-link(href=url_for(path))
                   !=post.title
   //- #category
   //-   h1= page.category

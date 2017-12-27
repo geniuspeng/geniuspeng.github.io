@@ -322,13 +322,16 @@ var appendArrow = function() {
       myScrollTo(target, 10, function() {
         slider.style.display = 'none';
         magic.style.display = 'none';
+        document.body.scrollTop = 0;
       })
     })
   }
 }
 var myScrollTo = function(target, speed, fn){
+  console.log(target)
   timer && clearTimeout(timer);
-  var _top = document.documentElement.scrollTop;
+  var _top = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop || 0;
+  console.log(_top)
   if (_top < target) {
     _top += speed;
     window.scrollTo(0,_top);
@@ -350,6 +353,7 @@ navbarBurger.addEventListener('click', function (el) {
 if (is_home) {
   var loader = new resLoader({
     resources : [
+     '/images/home/bg.jpg',
      '/images/home/app.png',
      '/images/home/app_hover.png',
      '/images/home/vis.png',

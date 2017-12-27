@@ -230,6 +230,8 @@ nav#menu-inner
     line-height 1.5
     padding 0.5rem 1rem
     position relative
+    &.active
+      color #eeb174
   .navbar-brand
     align-items stretch
     display flex
@@ -276,47 +278,81 @@ nav#menu-inner
     height 20vw
     max-height 290px
     min-height 150px
+    border-left: 1px solid rgba(234, 234, 234, 0.68)
+    border-bottom: 1px solid rgba(234, 234, 234, 0.68)
     &.link-item a
+      position relative
       text-decoration none
       display block
       height 100%
       background-repeat no-repeat
-      background-size 30%
-      background-position center
+      background-size 20%
+      background-position center 40%
       transition all .4s
-      border-left: 1px solid rgba(234, 234, 234, 0.68)
-      border-bottom: 1px solid rgba(234, 234, 234, 0.68)
       &:hover 
         text-decoration none
         background-repeat no-repeat
-        background-position center
+        background-position center 40%
+        box-shadow 0 30px 28px -16px rgba(0, 0, 0, 0.26)
         transform translate(0, -4px)
+        &::before
+          color #eeb174  
+          font-weight normal 
+      &::before
+        position absolute
+        left 0
+        right 0
+        top 60%
+        color #aaa
+        text-align center
+        font-size 1.2rem
+        font-weight lighter
+             
     &.home-item a
-      background-image url(../images/home/vis.png)
+      background-image url(../images/home/home.png)
       &:hover
-        background-image url(../images/home/vis_hover.png)
+        background-image url(../images/home/home_hover.png)
+      &::before
+        content '首页'
     &.archives-item a
-      background-image url(../images/home/vis3.png)
+      background-image url(../images/home/Blog.png)
       &:hover
-        background-image url(../images/home/vis3_hover.png)
-    &.navigations-item a
-      background-image url(../images/home/web.png)
-      border-right: 1px solid rgba(234, 234, 234, 0.68)
-      &:hover
-        background-image url(../images/home/web_hover.png)
-    &.material-item a
-      background-image url(../images/home/web3.png)
-      &:hover
-        background-image url(../images/home/web3_hover.png)
-    &.game-item a
-      background-image url(../images/home/yins.png)
-      &:hover
-        background-image url(../images/home/yins_hover.png)
+        background-image url(../images/home/Blog_hover.png)
+      &::before
+        content '博客'
     &.about-item a
-      background-image url(../images/home/app.png)
+      background-image url(../images/home/about.png)
       border-right: 1px solid rgba(234, 234, 234, 0.68)
       &:hover
-        background-image url(../images/home/app_hover.png)
+        background-image url(../images/home/about_hover.png)
+      &::before
+        content '关于'
+    &.navigations-item a
+      background-image url(../images/home/nav.png)
+      border-right: 1px solid rgba(234, 234, 234, 0.68)
+      &:hover
+        background-image url(../images/home/nav_hover.png)
+        &::before
+          content '前端导航'
+      &::before
+        content '工具'
+    &.material-item a
+      background-image url(../images/home/source.png)
+      &:hover
+        background-image url(../images/home/source_hover.png)
+        &::before
+          content '素材资源库'
+      &::before
+        content '资源'
+    &.game-item a
+      background-image url(../images/home/game.png)
+      &:hover
+        background-image url(../images/home/game_hover.png)
+        &::before
+          content 'GBA模拟器'
+      &::before
+        content '游戏室'
+
 
 .arrow
   position absolute

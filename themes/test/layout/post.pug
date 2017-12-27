@@ -7,7 +7,7 @@ block content
         h1.post-title= page.title
       .post-meta
         if page.tags && page.tags.length
-          .tags!= list_tags(page.tags, {show_count: false,class: 'article-tag'})
+          .tags!= list_tags(page.tags, {show_count: false})
         if page.date
           time(datetime=page.date.toJSON())= date(page.date, date_format)
       section.post-content
