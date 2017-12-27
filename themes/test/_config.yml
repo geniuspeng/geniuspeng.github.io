@@ -18,6 +18,7 @@ stylesheets:
 
 # scripts loaded in the end of the body
 scripts:
+- /js/resLoader.js
 - /js/main.js
 
 # navigations config

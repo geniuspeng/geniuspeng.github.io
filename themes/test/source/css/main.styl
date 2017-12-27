@@ -305,6 +305,77 @@ nav#menu-inner
     height 20px
     cursor pointer
 
+.mask
+  position fixed
+  width 100%
+  top 0
+  bottom 0
+  background rgba(0,0,0,.7)
+  z-index 9999
+  display flex
+  align-items center
+  justify-content center
+  &.mask-hide
+    width 0
+    transition-duration .8s
+    .loading
+      display none
+  .loading 
+    position fixed
+    width 100%
+    top calc(50% - 30px)
+    text-align center
+    span 
+      color #eee
+      font-size 30px
+      &:nth-child(2) 
+        color #0088cc
+        animation spin 1.5s linear infinite
+      &:nth-child(3) 
+        margin-left 25px
+        color #e23069
+        animation spin 1s linear infinite
+      &:nth-child(4) 
+        margin-left 50px
+        color #f0e300
+        animation spin 1.25s linear infinite
+      &:nth-child(5) 
+        padding-left 77px
+    .animate 
+      position absolute
+      top 0
+@keyframes spin 
+  0%
+    top 0
+  50% 
+    top 100%
+    opacity 0
+    top 100%
+    opacity 0
+  51% 
+    top -100%
+    top -100%
+  100% 
+    top 0
+    opacity 1
+    top 0
+    opacity 1
+@-webkit-keyframes spin 
+  0%
+    top 0
+  50% 
+    top 100%
+    opacity 0
+    top 100%
+    opacity 0
+  51% 
+    top -100%
+    top -100%
+  100% 
+    top 0
+    opacity 1
+    top 0
+    opacity 1
 
 
 /*滚动条 样式*/

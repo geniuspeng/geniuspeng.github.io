@@ -340,6 +340,36 @@ var myScrollTo = function(target, speed, fn){
     myScrollTo(target, speed, fn);
   }, 1)
 }
-window.onload = function() {
-  appendArrow();
+
+//资源预加载
+if (is_home) {
+  var loader = new resLoader({
+    resources : [
+     '/images/home/app.png',
+     '/images/home/app_hover.png',
+     '/images/home/vis.png',
+     '/images/home/vis_hover.png',
+     '/images/home/vis3.png',
+     '/images/home/vis3_hover.png',
+     '/images/home/web.png',
+     '/images/home/web_hover.png',
+     '/images/home/web3.png',
+     '/images/home/web3_hover.png',
+     '/images/home/yins.png',
+     '/images/home/yins_hover.png'
+    ],
+    onStart : function(total){
+      // console.log('start:'+total);
+    },
+    onProgress : function(current, total){
+      // console.log(current+'/'+total);
+      // var percent = current/total*100;
+      // console.log(percent+ '%')
+    },
+    onComplete : function(total){
+      appendArrow();
+      document.querySelector('.mask').classList.toggle("mask-hide"); 
+    }
+  });
+  loader.start();  
 }
