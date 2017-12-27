@@ -352,18 +352,18 @@ if (is_home) {
   var loader = new resLoader({
     resources : [
      '/images/home/bg.jpg',
-     '/images/home/app.png',
-     '/images/home/app_hover.png',
-     '/images/home/vis.png',
-     '/images/home/vis_hover.png',
-     '/images/home/vis3.png',
-     '/images/home/vis3_hover.png',
-     '/images/home/web.png',
-     '/images/home/web_hover.png',
-     '/images/home/web3.png',
-     '/images/home/web3_hover.png',
-     '/images/home/yins.png',
-     '/images/home/yins_hover.png'
+     '/images/home/home.png',
+     '/images/home/home_hover.png',
+     '/images/home/Blog.png',
+     '/images/home/Blog_hover.png',
+     '/images/home/about.png',
+     '/images/home/about_hover.png',
+     '/images/home/nav.png',
+     '/images/home/nav_hover.png',
+     '/images/home/source.png',
+     '/images/home/source_hover.png',
+     '/images/home/game.png',
+     '/images/home/game_hover.png'
     ],
     onStart : function(total){
       // console.log('start:'+total);
