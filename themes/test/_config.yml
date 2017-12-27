@@ -2,6 +2,10 @@
 # html lang
 language: en
 
+# 昵称
+avatar: /images/avatar.png
+nickname: 牧羊少年
+
 # main menu navigation
 menu:
   Home: /

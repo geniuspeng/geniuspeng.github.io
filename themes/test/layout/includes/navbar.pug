@@ -3,13 +3,17 @@
   nav#menu-inner.container
     .navbar-brand
       a.navbar-item(href="#")
-        img(src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28")
-      .navbar-burger
-    .navbar-menu
+        img(src=url_for(theme.avatar) alt="头像")
+        span= theme.nickname
+      #navbarBurger.navbar-burger
+        span
+        span
+        span
+    #navMenuIndex.navbar-menu
       .navbar-start
         each url, label in theme.menu
           .navbar-item
             a.navbar-link(href=url_for(url))= label
-      .navbar-end
-        .navbar-item
-          a.button 
+      //- .navbar-end
+      //-   .navbar-item
+      //-     a.button 

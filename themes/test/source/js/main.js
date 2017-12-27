@@ -341,6 +341,11 @@ var myScrollTo = function(target, speed, fn){
   }, 1)
 }
 
+var navbarBurger = document.querySelector('#navbarBurger');
+navbarBurger.addEventListener('click', function (el) {
+  document.querySelector('#navMenuIndex').classList.toggle("is-active"); 
+});
+
 //资源预加载
 if (is_home) {
   var loader = new resLoader({

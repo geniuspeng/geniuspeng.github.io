@@ -4,8 +4,10 @@
     align-items stretch
     display flex
   nav#menu-inner
-    .navbar-burger
-      display none
+    .navbar-brand
+      margin-left -1rem;
+      .navbar-burger
+        display none
     .navbar-item, .navbar-link 
       align-items center
       display flex
@@ -54,11 +56,20 @@
       width 25%
     .panel-large-item
       width 50%
-// @media screen and (max-width: 1024px)
-//   .panel 
-//     .panel-item
-//       width 20%
-
+@media screen and (max-width: 1023px)
+  #menu-outer > #menu-inner.container 
+    display block
+  nav#menu-inner
+    .navbar-menu
+      -webkit-overflow-scrolling touch
+      max-height 0
+      overflow auto
+      background-color white
+      box-shadow 0 8px 16px rgba(10, 10, 10, 0.1)
+      &.is-active
+        // display block
+        max-height 1000px
+        transition max-height 1s
 @media only screen and (max-width: 900px)
   .post 
     font-size 0.95em
