@@ -102,10 +102,6 @@ navs:
       img: /images/navs/react.png
       title: REACT
       desc: A JavaScript library for building user interfaces
-    - link: https://cn.vuejs.org/
-      img: /images/navs/vue.png
-      title: VUE
-      desc: 渐进式JavaScript 框架
     - link: https://reactnative.cn/
       img: /images/navs/react-native.png
       title: REACT NATIVE
