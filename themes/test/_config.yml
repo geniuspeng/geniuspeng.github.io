@@ -45,7 +45,7 @@ navs:
     - link: http://store.steampowered.com/
       img: /images/navs/steam.png
       title: Steam
-      desc: 一个关于分享和探索的地方
+      desc: 全球最大的综合性数字发行平台
 - label: 门户社区
   list:
     - title: 掘金
@@ -202,8 +202,12 @@ navs:
       desc: 在线web效果测试
     - link: https://resizeappicon.com/
       img: /images/navs/highcharts.png
-      title: App Icon Resizer
+      title: Icon Resizer
       desc: 一键在线生成各个大小图标
+    - link: http://www.unicode.org/emoji/charts/full-emoji-list.html
+      img: /images/navs/emoji.png
+      title: Emoji编码表
+      desc: Full Emoji List, v5.0
 - label: 其他推荐
   list:
     - link: https://docs.docker.com/

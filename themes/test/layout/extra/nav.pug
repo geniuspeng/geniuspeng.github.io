@@ -10,6 +10,6 @@
                 span.card-icon
                   img(src=url_for(item.img))
                 span.card-title= item.title
-              .card-body= item.desc
+              .card-body(title=item.desc)= item.desc
               .card-footer
 
