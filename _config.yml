@@ -76,7 +76,7 @@ pagination_dir: page
 ## Themes: http://hexo.io/themes/
 #theme: hexadillax-master,hexo-theme-yilia-master
 # theme: hexo-theme-yilia-master
-theme: test
+theme: my-theme
 
 ## https://github.com/chjj/marked
 markdown:
