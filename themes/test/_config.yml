@@ -186,6 +186,24 @@ navs:
       img: /images/navs/playcanvas.png
       title: PlayCanvas
       desc: 3D HTML5 & WebGL 游戏引擎
+- label: 在线工具
+  list:
+    - link: http://www.cocos.com/docs/?type=cocos2d-js#anysdk
+      img: /images/navs/tinypng.png
+      title: Tiny png
+      desc: 在线图片压缩工具
+    - link: http://caniuse.com/
+      img: /images/navs/caniuse.png
+      title: Caniuse
+      desc: web前端兼容性查询工具
+    - link: http://codepen.io/
+      img: /images/navs/codepen.png
+      title: Codepen
+      desc: 在线web效果测试
+    - link: https://resizeappicon.com/
+      img: /images/navs/highcharts.png
+      title: App Icon Resizer
+      desc: 一键在线生成各个大小图标
 - label: 其他推荐
   list:
     - link: https://docs.docker.com/
@@ -200,10 +218,6 @@ navs:
       img: /images/navs/mdn.png
       title: MDN web文档
       desc: 源于开发者，服务开发者
-    - link: https://resizeappicon.com/
-      img: /images/navs/highcharts.png
-      title: App Icon Resizer
-      desc: 一键在线生成各个大小图标
 
 materials:
 - text: Mobi-scroll破解版
