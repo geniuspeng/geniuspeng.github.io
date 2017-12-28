@@ -1,4 +1,4 @@
-title: pwa-service-worker
+title: PWA:service-worker篇
 date: 2017-09-19 15:31:58
 categories: 前端
 tags: [WebApp,JavaScript]
