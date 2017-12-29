@@ -1,0 +1,61 @@
+<!DOCTYPE html><html class="fixed-top" lang="zh-cn"><head><link rel=manifest href=/manifest.json><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Blog PWA"><link rel="apple-touch-icon" href="images/icons/icon-152x152.png"><meta name="msapplication-TileImage" content="images/icons/icon-144x144.png"><meta name="msapplication-TileColor" content="#2F3BA2"><title>NodeJS 8新特性 [ 牧羊少年的个人博客 ]</title><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/media.css"><link rel="icon" href="/favicon.ico"></head><body><div id="menu-outer"><dev class="bd-special-shadow" id="specialShadow" style="transform: scaleY(1);"></dev><nav class="container" id="menu-inner"><div class="navbar-brand"><a class="navbar-item" href="#"><img src="/images/avatar.png" alt="头像"><span>牧羊少年</span></a><div class="navbar-burger" id="navbarBurger"><span></span><span></span><span></span></div></div><div class="navbar-menu" id="navMenuIndex"><div class="navbar-start"><div class="navbar-item"><a class="navbar-link" href="/">首页</a></div><div class="navbar-item"><a class="navbar-link active" href="/archives">归档</a></div><div class="navbar-item"><a class="navbar-link" href="/about">关于</a></div></div></div></nav></div><div id="content-outer"><div class="content" id="content-inner"><div class="post-wrap"><article class="post" id="post"><div class="post-header"><h1 class="post-title">NodeJS 8新特性</h1></div><div class="post-meta"><div class="tags"><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node/">Node</a></li></ul></div><time datetime="2017-06-25T06:30:33.000Z">2017-06-25</time></div><section class="post-content"><p>前一阵子5月30日NodeJS 8终于发布了，而Node历来偶数版本都是一个长期稳定版（Long Term Support），这次的8.0版本新增了很多特性，在此整理一下~<br><a id="more"></a></p>
+<h2 id="Long-Term-Support"><a href="#Long-Term-Support" class="headerlink" title="Long Term Support"></a>Long Term Support</h2><p>基本全面支持ES6新特性，<a href="http://node.green/#ES2017-features-async-functions" target="_blank" rel="noopener">以及ES7的async函数</a>。</p>
+<h2 id="NPM-v5-x"><a href="#NPM-v5-x" class="headerlink" title="NPM v5.x"></a>NPM v5.x</h2><ul>
+<li>宇宙最快(？貌似)，自带lock文件package-lock.json 来记录依赖树信息</li>
+<li>–save以后不用写了，会自动发保存到package.json，可以使用参数 –no-save取消</li>
+<li>node-gyp 在 Windows 提供对 node-gyp.cmd 的支持</li>
+<li>包发布将同时生成 sha512 和 sha1 校验码，下载依赖时将使用强校验算法</li>
+<li>Git依赖支持优化，文件依赖优化，缓存优化</li>
+</ul>
+<p>本次 npm5 新增了 package-lock.json 文件，在操作依赖时默认生成，用于记录和锁定依赖树的信息。使用过 yarn 的同学应该能感觉到，这次 npm5 的很多改动都有参考 yarn，这里估计也是在 yarn 的 lockfile 大受欢迎的背景下做出了这个修改（其实之前的 npm 版本并不是没有 lockfile）。</p>
+<p>生成 package-lock.json 后，重复执行 npm install 时将会以其记录的版本来安装。这时如果手动修改 package.json 中的版本，重新安装也不会生效，只能手动执行 npm install 命令指定依赖版本来进行修改。而这一点 yarn 是可以做到的。猜想 yarn 在执行前是先对比了一遍 package.json 和 yarn.lock 中的版本，如果版本范围完全不符的话会重新安装并更新 lockfile。</p>
+<p>npm5 新增的 package-lock.json 文件和之前通过 npm shrinkwrap 命令生成的 npm-shrinkwrap.json 文件的格式完全相同，文件内记录了版本，来源，树结构等所有依赖的 metadata。需要注意的是 npm shrinkwrap 并不是一个新功能特性，而是从 npm2 就开始有的功能。也就是说在 npm5 之前的版本也是可以通过 shrinkwrap 锁定依赖的。（在这一点上，其实 Facebook 也是早期在使用 npm shrinkwrap 等功能时无法满足需求才导致了现在 yarn 的出现。）</p>
+<p>而最新的 npm5 在生成了 package-lock.json 之后，再运行 npm shrinkwrap 命令，会发现就是把 package-lock.json 重命名为 npm-shrinkwrap.json 而已。</p>
+<p>因此 package-lock.json 表面上看只是把 npm-shrinkwrap.json 作为了默认创建，为何还要新建一个文件呢？官方对于此也给出了答复和解释：新增 package-lock.json 主要是为了使得 npm-shrinkwrap.json 可以向下兼容，保证旧版也可使用（比如已有 shrinkwrap 文件的项目，或是回滚旧版的场景）。另外 package-lock 的名称也比 shrinkwrap 相对更加直观。</p>
+<h2 id="V8引擎"><a href="#V8引擎" class="headerlink" title="V8引擎"></a>V8引擎</h2><ul>
+<li><strong>v5.7更新：</strong></li>
+<li>promise 和 async 提速</li>
+<li>spread operator, destructuring 和 generators 提速</li>
+<li>通过 TurboFan, RegExp 提速了 15%</li>
+<li>padStart 和 padEnd 被添加到了 es2017 (ECMA 262)</li>
+<li>支持<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat" target="_blank" rel="noopener">Intl.DateTimeFormat.prototype.formatToParts</a></li>
+<li><strong>WebAssembly 默认打开</strong></li>
+<li><strong>添加 PromiseHook</strong></li>
+</ul>
+<ul>
+<li><strong>v5.8更新：</strong></li>
+<li>任意设置堆大小的限制值 (范围是带符号32位整数)</li>
+<li>启动性能提升约5％</li>
+<li>缩短 IC 系统的代码编译，分析，优化时间</li>
+</ul>
+<p>TurboFan &amp; Ingnition<br>TURBOFAN 编译器</p>
+<p>V8 优化了 JIT 编译器，它是用 Sea of Nodes 概念进行设计的。之前采用的编译技术是 Crankshaft，它支持优化更多的代码。但是 ES 的标准发展很快，后来发现 Crankshaft 已经很难去优化 ES2015 代码了，而通过 Ignition 和 TurboFan 可以做到。</p>
+<p>IGNITION 解释器</p>
+<p>已知的是到目前为止 V8 都没有自己的解析器，都是直接把 JS 编译成机器码。<br>作为JIT的JIT的问题，即使代码被执行一次，它也消耗大量的存储空间，所以需要尽量避免内存开销。<br>使用 Ignition，可以精简 25% - 50% 的机器码。<br>Ignition 是没有依赖 Turbofan 的底层架构，它采用宏汇编指令。为每个操作码生成一个字节码处理程序。<br>通过 Ignition 可以较少系统内存使用情况。</p>
+<p>之前 v8 选择了直接将 JS 代码编译到机器代码执行，机器码的执行性能已经非常之高，而这次引入字节码则是选择编译 JS 代码到一个中间态的字节码，执行时是解释执行，性能是低于机器代码的。最终的性能测试势必会降低，而不是提高。那么 V8 为什么要做这样一个退步的选择呢？为 V8 引入字节码的动机又是什么呢？笔者总结下来有三条：</p>
+<p>（主要动机）减轻机器码占用的内存空间，即牺牲时间换空间<br>提高代码的启动速度<br>对 v8 的代码进行重构，降低 v8 的代码复杂度</p>
+<p>WebAssembly:WebAssembly 是除了 JavaScript 以外，另一种可以在浏览器中执行的编程语言。所以当人们说 WebAssembly 更快的时候，一般来讲是与 JavaScript 相比而言的。</p>
+<h2 id="N-API"><a href="#N-API" class="headerlink" title="N-API"></a>N-API</h2><p>目前 Node 的实现中，V8 的 API 是直接暴露出来的。由于 V8 经常变更 API，那就存在下面的这些问题：</p>
+<ul>
+<li>Native 模块在每个版本间需要重新编译</li>
+<li>Native 模块需要变更代码</li>
+<li>Native 模块无法工作在其他JS engine 上 (比如: ChakraCore)<br>这些问题之前的 NAN(Native Abstractions for Node.js)(nodejs/nan) 搞不定。</li>
+</ul>
+<p>经历过 Node.js 大版本升级的同学肯定会发现，每次升级后我们都得重新编译像 node-sass 这种用 C++ 写的扩展模块，否则就会这样：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Error: The module <span class="string">'node-sass'</span></span><br><span class="line">was compiled against a different Node.js version using</span><br><span class="line">NODE_MODULE_VERSION 51. This version of Node.js requires</span><br><span class="line">NODE_MODULE_VERSION 55. Please try re-compiling or re-installing</span><br><span class="line">the module (\<span class="keyword">for</span> instance, using `npm rebuild` or `npm install`).</span><br></pre></td></tr></table></figure>
+<p>NODE_MODULE_VERSION 是每一个 Node.js 版本内人为设定的数值，意思为 ABI (Application Binary Interface) 的版本号。一旦这个号码与已经编译好的二进制模块的号码不符，便判断为 ABI 不兼容，需要用户重新编译。</p>
+<p>这其实是一个工程难题，亦即 Node.js 上游的代码变化如何最小地降低对 C++ 模块的影响，从而维持一个良好的向下兼容的模块生态系统。最坏的情况下，每次发布 Node.js 新版本，因为 API 的变化，C++ 模块的作者都要修改它们的源代码，而那些不再有人维护或作者失联的老模块就会无法继续使用，在作者修改代码之前社区就失去了这些模块的可用性。其次坏的情况是，每次发布 Node.js 新版本，虽然 API 保持兼容使得 C++ 模块的作者不需要修改他们的代码，但 ABI 的变化导致必须这些模块必须重新编译。而最好的情况就是，Node.js 新版本发布后，所有已编译的 C++ 模块可以继续正常工作，完全不需要任何人工干预。</p>
+<p>Node.js 8 的 Node.js API (N-API) 就是为了解决这个问题，做到上述最好的情况，为 Node.js 模块生态系统的长期发展铺平道路。N-API 追求以下目标：</p>
+<ol>
+<li>有稳定的 ABI</li>
+<li>抽象消除 Node.js 版本之间的接口差异</li>
+<li>抽象消除 V8 版本之间的接口差异</li>
+<li>抽象消除 V8 与其他 JS 引擎（如 ChakraCore）之间的接口差异</li>
+</ol>
+<p>先整理这么多，还有一部分- -</p>
+</section></article></div></div></div><div id="bottom-outer"><div id="bottom-inner"><span>Site construction by</span><span> 牧羊少年 </span><span>using</span><a href="http://hexo.io"><span>hexo blog framework</span></a><span>.</span></div></div><script>window.is_home = false</script><script src="/js/resLoader.js"></script><script src="/js/main.js"></script><script>if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js?t=1514522006084')
+    .then(function () {console.log('ServiceWorker Register Successfully.')})
+    .catch(function (e) {console.error(e)});
+}
+</script></body></html>
