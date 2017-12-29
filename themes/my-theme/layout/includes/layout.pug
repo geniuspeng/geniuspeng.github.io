@@ -26,7 +26,7 @@ html(lang=config.language).fixed-top
       //- stylesheets list from config.yml
       each url in theme.stylesheets
         link(rel='stylesheet', href=url)
-    link(rel="icon", href=config.root + 'img/favicon.png')
+    link(rel="icon", href= url_for('/favicon.ico'))
   body
     include ./navbar.pug
     block magic
