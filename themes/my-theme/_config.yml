@@ -26,6 +26,16 @@ scripts:
 - /js/resLoader.js
 - /js/main.js
 
+# highlight
+highlight_style:
+  on: true
+  inline_code: 5
+  code_block: 4
+  # Set inline_code to style highlight text
+  # Chose a highlight theme for code block
+  # 通过 inline_code 切换内置文本高亮样式 Value: 0 - 9 可选
+  # 通过 code_block 切换内置代码高亮配色主题  Value: 0 - 4 
+
 # navigations config
 navs:
 - label: 最新推荐
@@ -92,10 +102,6 @@ navs:
       img: /images/navs/react.png
       title: REACT
       desc: A JavaScript library for building user interfaces
-    - link: https://cn.vuejs.org/
-      img: /images/navs/vue.png
-      title: VUE
-      desc: 渐进式JavaScript 框架
     - link: https://reactnative.cn/
       img: /images/navs/react-native.png
       title: REACT NATIVE

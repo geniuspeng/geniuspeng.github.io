@@ -22,7 +22,7 @@ BUPT，帝都迷途小小小码农一枚，伪二次元，爱好游戏，曳步�
 - 熟悉浏览器工作原理，掌握各种前端性能优化手段。
 - 熟练掌握Vue，微信小程序，了解React，能够独立开发完整的产品。
 - 熟悉NodeJS，掌握Express、Koa等node框架。
-- 熟悉MongoDB，能够结合Node进行进本的数据库操作，了解MySQL，Oracle等关系型数据库。
+- 熟悉MongoDB，能够结合Node进行基本的数据库操作，了解MySQL，Oracle等关系型数据库。
 - 熟悉基本的Git命令，Linux命令以及Shell脚本编程。
 - 额外技能Java，Python，Matlab有一定了解（上学的时候用过）。
 
