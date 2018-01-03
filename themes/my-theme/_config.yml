@@ -114,6 +114,10 @@ navs:
       img: /images/navs/rxjs.png
       title: rxjs
       desc: The ReactiveX library for JavaScript.
+    - link: https://weex.apache.org/cn/
+      img: /images/navs/weex.png
+      title: Weex
+      desc: 一套构建高性能、可扩展的原生应用跨平台方案
 - label: Web框架
   list:
     - link: http://www.expressjs.com.cn/
@@ -213,7 +217,11 @@ navs:
     - link: http://www.unicode.org/emoji/charts/full-emoji-list.html
       img: /images/navs/emoji.png
       title: Emoji编码表
-      desc: Full Emoji List, v5.0
+      desc: Full Emoji List, v5.
+    - link: https://www.processon.com/
+      img: /images/navs/processon.png
+      title: ProcessOn
+      desc: 免费的在线作图工具
 - label: 其他推荐
   list:
     - link: https://docs.docker.com/
