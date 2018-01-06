@@ -6,10 +6,6 @@ tags: [vue, 源码, JavaScript]
 Vue的官方说明里有[深入响应式原理](https://cn.vuejs.org/v2/guide/reactivity.html)这一节。在此官方也提到过：
 > 当你把一个普通的 JavaScript 对象传给 Vue 实例的 data 选项，Vue 将遍历此对象所有的属性，并使用 Object.defineProperty 把这些属性全部转为 getter/setter。Object.defineProperty 是 ES5 中一个无法 shim 的特性，这也就是为什么 Vue 不支持 IE8 以及更低版本浏览器的原因。
 
-> 用户看不到 getter/setter，但是在内部它们让 Vue 追踪依赖，在属性被访问和修改时通知变化。这里需要注意的问题是浏览器控制台在打印数据对象时 getter/setter 的格式化并不同，所以你可能需要安装 vue-devtools 来获取更加友好的检查接口。
-
-> 每个组件实例都有相应的 watcher 实例对象，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的 setter 被调用时，会通知 watcher 重新计算，从而致使它关联的组件得以更新。
-
 官网只是说了一个大概原理，浏览了一下vue的源码以及其他关于此处的解释，这一块其实可以总结为两点：利用Object.defineProperty进行数据劫持同时结合观察者模式（发布/订阅模式）来实现数据双向绑定，这也是vue响应式原理的核心。首先先把这两个东西简单介绍一下吧~
 
 <!--more-->
@@ -56,11 +52,11 @@ pub.publish(); //发布者发布更新
 ```
 
 首先有3个主体：发布者，主题对象，订阅者，其中发布者和主题对象是一对一的（某些其他场景可能一对多？），而主题对象和订阅者也是一对多的关系。发布者通过发布某个主题对象，主题对象更新并通知其所有的订阅者，然后每个订阅者执行update进行更新。
-**对于Vue，我们这里可以认为一个每个Vue实例只有一个主题对象Dep，而其下面的data包含的各个属性是其一对多的N个订阅者sub。**
+**对于Vue，我们这里可以认为Vue实例中的data中的每一项属性是一个Dep，而所有用到这个属性的地方都是这个Dep的一个订阅者（sub），当这个属性值变化时，观察者通过监听捕获变化，告诉这个dep去notify每一个订阅者。**
 
 ### Observer ，Dep和Watcher
 Observer、Watcher、Dep 是响应式原理中涉及到的 3 个重要的对象,可以说分别上面的发布者，主体对象，订阅者相对应。其关系可以简化为下图所示：
-![https://segmentfault.com/img/bVJiAp?w=651&h=327](https://segmentfault.com/img/bVJiAp?w=651&h=327)
+![https://geniuspeng.github.io/image-storage/blog/vue/vue-reactivity.png](https://geniuspeng.github.io/image-storage/blog/vue/vue-reactivity.png?w=651&h=327)
 
 #### Observer对象
 这个东西，字面意思是一个观察者，我个人理解就是上面所说的Object.defineProperty + 发布者的结合体，它的主要功能是做数据劫持，在数据获得更新的时候（拦截set方法），执行主题对象（Dep）的notify方法，通知所有的订阅者（Watcher）。
@@ -194,27 +190,6 @@ Dep提供了如下几个方法：
 - removeSub: 与addSub对应，作用是将Watcher实例从记录依赖的数组中移除
 - depend: Dep.target上存放这当前需要操作的Watcher实例，调用depend会调用该Watcher实例的addDep方法，addDep的功能可以看下面对Watcher的介绍
 - notify: 通知依赖数组中所有的watcher进行更新操作
-<!-- 我们可以把这个dep的功能简化一下:
-```js
-function Dep() {
-  this.subs = [];
-}
-Dep.prototype = {
-  addSub: function(sub) {
-    this.subs.push(sub);
-  },
-  depend () {
-    if (Dep.target) {
-      Dep.target.addDep(this)
-    }
-  }
-  notify: function() {
-    this.subs.forEach(function(sub) {
-      sub.update();
-    });
-  }
-};
-``` -->
 
 ### Watcher对象
 Watcher类定义在[src/core/observer/watcher.js](https://github.com/vuejs/vue/blob/v2.5.13/src/core/observer/watcher.js)。其构造函数如下：
@@ -328,12 +303,21 @@ Observer，Dep，Watcher所有的代码都过一遍之后，再来回头看看�
 我们在Dep中可以看到Dep在一开始定义了一个全局属性Dep.target，在新建watcher是，这个属性为null，而在watcher的构造函数中最后会执行自己的get（）方法，进而执行pushTarget(this)方法，可以看到get()方法中做了一件事情：value = this.getter.call(vm, vm)，然后popTarget（）。Dep.target只是一个标记，存储当前的watcher实例，而执行这句话的意义在于触发Object.defineProperty中的get拦截，而在bject.defineProperty中的get那里，我们可以看到dep.depend()，正是在这里将当前的订阅者watcher绑定当Dep上。
 也就是说，每个watcher第一次实例化的时候，都会作为订阅者订阅其相应的Dep。
 而关于watcher何时进行实例化的问题，模板渲染初始化相关指令调用data中的属性，或者正常进行数据绑定时都会创建watcher实例。
+__PS: 在模板渲染过程中，vue1.x与vue2.x完全不同，1.x是利用documentFragment来实现，而2.x向react靠拢，加入了virtual dom，同时通过自己生产的render方法进行渲染，不过无论是那种方法，都会在初始时对所关联的data属性进行watcher实例化并且绑定watcher变化时的更新callback，确保data更新时会重新对相应的地方进行视图更新。__
 
-总结依赖关系建立的步骤：
+
+总结一下：
 
 1. 模板编译过程中的指令和数据绑定都会生成 Watcher 实例，watch 函数中的对象也会生成 Watcher 实例，在实例化的过程中，会调用 watcher.js 中的 get 函数 touch 这个 Watcher 的表达式或函数涉及的所有属性；
-2. touch 开始之前，Watcher 会设置 Dep 的静态属性 Dep.target 指向其自身，然后开始依赖收集；
+2. touch 开始之前，Watcher 会设置 Dep 的静态属性 Dep.target 指向其自身，目的在于标记此watcher实例是第一次创建，需要添加到一个Dep中；
 3. touch 属性的过程中，属性的 getter 函数会被访问；
 4. 属性 getter 函数中会判断 Dep.target（target 中保存的是第 2 步中设置的 Watcher 实例）是否存在，若存在则将 getter 函数所在的 Observer 实例的 Dep 实例保存到 Watcher 的列表中，并在此 Dep 实例中添加 Watcher 为订阅者；
-5. 重复上述过程直至 Watcher 的表达式或函数涉及的所有属性均 touch 结束（即表达式或函数中所有的数据的 getter 函数都已被触发），Dep.target 被置为 null，依赖收集完成；
-以上就是模板中的指令与数据关联起来的步骤。当数据发生改变后，相应的 setter 函数被触发，然后执行 notify 函数通知订阅者（Watcher）去更新相关视图，也会对新的数据重新 observe，更新相关的依赖关系。
+5. 重复上述过程直至 Watcher 的表达式或函数涉及的所有属性均 touch 结束（即表达式或函数中所有的数据的 getter 函数都已被触发），Dep.target 被置为 null，此时已经将该watcher作为订阅者绑定到Dep中；
+
+---
+参考链接
+- [官方文档：深入响应式原理](https://cn.vuejs.org/v2/guide/reactivity.html)
+- [Vue2.0源码解读：响应式原理](http://zhouweicsu.github.io/blog/2017/03/07/vue-2-0-reactivity/)
+- [Vue原理解析之 observer 模块](https://segmentfault.com/a/1190000008377887)
+- [剖析Vue原理&实现双向绑定MVVM](https://segmentfault.com/a/1190000006599500)
+
