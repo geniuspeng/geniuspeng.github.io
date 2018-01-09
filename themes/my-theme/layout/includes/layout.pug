@@ -49,6 +49,7 @@ html(lang=config.language).fixed-top
     if theme.scripts !== undefined && theme.scripts.length > 0
       //- scripts list from config.yml
       script.
-        window.is_home = !{is_home()}
+        window.is_home = !{is_home() && page.prev == 0}
+        console.log(window.is_home);
       each url in theme.scripts
         script(src=url)
