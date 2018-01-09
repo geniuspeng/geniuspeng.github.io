@@ -30,7 +30,7 @@ var precacheUrls = [];
 
   precacheUrls.push('/manifest.json');
 
-  precacheUrls.push('/2017/08/24/mobile-issues/');
+  precacheUrls.push('/2015/06/17/nodebb/');
 
   precacheUrls.push('/2015/09/15/360-written/');
 

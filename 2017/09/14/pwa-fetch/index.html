@@ -48,9 +48,8 @@
 <li>no-cors 模式允许来自CDN的脚本、其他域的图片和其他一些跨域资源，但是首先有个前提条件，就是请求的method只能是”HEAD”,”GET”或者”POST”。此外，任何 ServiceWorkers 拦截了这些请求，它不能随意添加或者改写任何headers，除了<a href="https://fetch.spec.whatwg.org/#simple-header" target="_blank" rel="noopener">这些</a> 。JavaScript不能访问Response中的任何属性，这保证了 ServiceWorkers 不会导致任何跨域下的安全问题而隐私信息泄漏。</li>
 <li>cors 模式我们通常用作跨域请求来从第三方提供的API获取数据。这个模式遵守 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="noopener">CORS协议</a> 。</li>
 </ul>
-</section></article></div></div></div><div id="bottom-outer"><div id="bottom-inner"><span>Site construction by</span><span> 牧羊少年 </span><span>using</span><a href="http://hexo.io"><span>hexo blog framework</span></a><span>.</span></div></div><script>window.is_home = false
-console.log(window.is_home);</script><script src="/js/resLoader.js"></script><script src="/js/main.js"></script><script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1515467443979')
+</section></article></div></div></div><div id="bottom-outer"><div id="bottom-inner"><span>Site construction by</span><span> 牧羊少年 </span><span>using</span><a href="http://hexo.io"><span>hexo blog framework</span></a><span>.</span></div></div><script>window.is_home = false</script><script src="/js/resLoader.js"></script><script src="/js/main.js"></script><script>if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js?t=1515467876269')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
