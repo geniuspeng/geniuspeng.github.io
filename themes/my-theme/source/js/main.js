@@ -73,6 +73,9 @@ if (is_home) {
     }
   });
   loader.start();  
-} else {
-  document.querySelector('.mask').classList.toggle("mask-hide"); 
+} 
+else {
+  setTimeout(function(){
+    document.querySelector('.mask').classList.toggle("mask-hide"); 
+  }, 0)
 }

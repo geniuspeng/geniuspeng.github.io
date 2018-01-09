@@ -50,6 +50,5 @@ html(lang=config.language).fixed-top
       //- scripts list from config.yml
       script.
         window.is_home = !{is_home() && page.prev == 0}
-        console.log(window.is_home);
       each url in theme.scripts
         script(src=url)
