@@ -1,4 +1,5 @@
 var timer = null;
+var $mask = document.querySelector('.mask') || null;
 
 var appendArrow = function() {
   var slider = document.querySelector('.slider');
@@ -69,13 +70,13 @@ if (is_home) {
     },
     onComplete : function(total){
       appendArrow();
-      document.querySelector('.mask').classList.toggle("mask-hide"); 
+      $mask.classList.toggle("mask-hide"); 
     }
   });
   loader.start();  
 } 
 else {
   setTimeout(function(){
-    document.querySelector('.mask').classList.toggle("mask-hide"); 
+    $mask && $mask.classList.toggle("mask-hide"); 
   }, 0)
 }

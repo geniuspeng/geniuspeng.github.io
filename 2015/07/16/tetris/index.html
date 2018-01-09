@@ -28,7 +28,7 @@
 <h3 id="checkFullLines"><a href="#checkFullLines" class="headerlink" title="checkFullLines"></a>checkFullLines</h3><p>消行操作核心方法。首先检测需要消除的行，并直接调用crashLine方法进行消除，将行数存入一个数组craseLines中，然后调用clearStatic清除static_blocks所有的方块，然后从上到下一行一行进行shiftDown，消除了N行，shiftDown了N次后，调用unClearStatic显示剩下的方块。这里在显示方块的函数draw中有一个小细节：带有销毁标记的Chunk不去显示，这样就可以保证消掉的行不会再在主面板中出现。</p>
 <p>###########<br>再后来就是一些游戏设置或者方块样式上的问题了，方块Block的样式是参考网络上的方法，通过border和box-shadow可以设置出一个很有立体感的方块模型，再加上圆角属性border-radius可以做出更加有意思的方块模型（border-radius设置为50%即为圆形）。然后就是加了一个切换背景的按钮和一个audio标签。<br>目前也就做到这个程度，先记这么多吧。。。</p>
 </section></article></div></div></div><div id="bottom-outer"><div id="bottom-inner"><span>Site construction by</span><span> 牧羊少年 </span><span>using</span><a href="http://hexo.io"><span>hexo blog framework</span></a><span>.</span></div></div><script>window.is_home = false</script><script src="/js/resLoader.js"></script><script src="/js/main.js"></script><script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1515467876269')
+  navigator.serviceWorker.register('/sw.js?t=1515469008186')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
