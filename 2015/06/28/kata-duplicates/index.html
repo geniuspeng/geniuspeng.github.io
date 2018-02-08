@@ -9,7 +9,7 @@
 <h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function duplicates(arr) &#123;</span><br><span class="line">  var output = [];</span><br><span class="line">  for (var i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (arr.slice(i+1).indexOf(arr[i]) &gt; -1 &amp;&amp; output.indexOf(arr[i]) &lt; 0) output.push(arr[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  return output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其实思路都是一样的，不过仔细想想，在很多情况下，数组那几个迭代方法在处理数组的时候要比for要来得方便得多，所以说还得慢慢熟练啊。。。</p>
 </section></article></div></div></div><div id="bottom-outer"><div id="bottom-inner"><span>Site construction by</span><span> 牧羊少年 </span><span>using</span><a href="http://hexo.io"><span>hexo blog framework</span></a><span>.</span></div></div><script>window.is_home = false</script><script src="/js/resLoader.js"></script><script src="/js/main.js"></script><script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1515469008186')
+  navigator.serviceWorker.register('/sw.js?t=1518076601579')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
