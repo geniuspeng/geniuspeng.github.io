@@ -30,15 +30,15 @@ var precacheUrls = [];
 
   precacheUrls.push('/manifest.json');
 
-  precacheUrls.push('/2017/12/14/my-promise/');
+  precacheUrls.push('/2016/05/28/linux-command3/');
 
   precacheUrls.push('/2015/09/15/360-written/');
 
   precacheUrls.push('/2018/01/05/vue-reactivity/');
 
-  precacheUrls.push('/2016/06/04/vim-command/');
-
   precacheUrls.push('/2018/02/07/vue-compile/');
+
+  precacheUrls.push('/2016/06/04/vim-command/');
 
 toolbox.precache(precacheUrls);
 toolbox.options = {"networkTimeoutSeconds":5};

@@ -121,6 +121,13 @@
   </url>
   
   <url>
+    <loc>http://blog.locusland.xyz/tags/index.html</loc>
+    
+    <lastmod>2017-12-25T03:37:26.164Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.locusland.xyz/material/index.html</loc>
     
     <lastmod>2017-12-25T03:37:26.164Z</lastmod>
@@ -135,21 +142,14 @@
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/tags/index.html</loc>
-    
-    <lastmod>2017-12-25T03:37:26.164Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.locusland.xyz/links/index.html</loc>
+    <loc>http://blog.locusland.xyz/categories/index.html</loc>
     
     <lastmod>2017-12-25T03:37:26.163Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/categories/index.html</loc>
+    <loc>http://blog.locusland.xyz/links/index.html</loc>
     
     <lastmod>2017-12-25T03:37:26.163Z</lastmod>
     
@@ -177,14 +177,14 @@
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2015/07/01/string-extend/</loc>
+    <loc>http://blog.locusland.xyz/2017/11/14/settimeout/</loc>
     
     <lastmod>2017-12-25T03:37:26.160Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2017/11/14/settimeout/</loc>
+    <loc>http://blog.locusland.xyz/2015/07/01/string-extend/</loc>
     
     <lastmod>2017-12-25T03:37:26.160Z</lastmod>
     
@@ -247,14 +247,14 @@
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2015/05/09/fe-interview/</loc>
+    <loc>http://blog.locusland.xyz/2015/06/02/flexbox/</loc>
     
     <lastmod>2017-12-25T03:37:26.150Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2015/06/02/flexbox/</loc>
+    <loc>http://blog.locusland.xyz/2015/05/09/fe-interview/</loc>
     
     <lastmod>2017-12-25T03:37:26.150Z</lastmod>
     
@@ -275,13 +275,6 @@
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2015/08/19/ali-exam/</loc>
-    
-    <lastmod>2017-12-25T03:37:26.147Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.locusland.xyz/2015/07/19/css-shape/</loc>
     
     <lastmod>2017-12-25T03:37:26.147Z</lastmod>
@@ -289,7 +282,14 @@
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2015/09/15/360-written/</loc>
+    <loc>http://blog.locusland.xyz/2015/08/19/ali-exam/</loc>
+    
+    <lastmod>2017-12-25T03:37:26.147Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.locusland.xyz/2015/05/08/about-responsive-web/</loc>
     
     <lastmod>2017-12-25T03:37:26.146Z</lastmod>
     
@@ -303,14 +303,14 @@
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2015/05/08/about-responsive-web/</loc>
+    <loc>http://blog.locusland.xyz/2015/05/05/FKS/</loc>
     
     <lastmod>2017-12-25T03:37:26.146Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.locusland.xyz/2015/05/05/FKS/</loc>
+    <loc>http://blog.locusland.xyz/2015/09/15/360-written/</loc>
     
     <lastmod>2017-12-25T03:37:26.146Z</lastmod>
     
