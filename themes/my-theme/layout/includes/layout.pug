@@ -20,6 +20,16 @@ html(lang=config.language).fixed-top
 
     meta(name="msapplication-TileImage", content="images/icons/icon-144x144.png")
     meta(name="msapplication-TileColor", content="#2F3BA2")
+    
+    //- 百度统计
+    script.
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?50461fe435ccda0fde8858f08eae2050";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
 
     title= pageTitle
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
