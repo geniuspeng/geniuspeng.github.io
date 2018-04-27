@@ -30,7 +30,7 @@ var precacheUrls = [];
 
   precacheUrls.push('/manifest.json');
 
-  precacheUrls.push('/2016/05/28/linux-command3/');
+  precacheUrls.push('/2017/12/14/my-promise/');
 
   precacheUrls.push('/2015/09/15/360-written/');
 

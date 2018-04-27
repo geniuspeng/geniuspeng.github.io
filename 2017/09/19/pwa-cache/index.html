@@ -39,7 +39,7 @@
 <p>一般来说，Service Worker 层面对 ServiceWorkerCache 的限制都会大于浏览器对每个域名的限制，所以，通常可理解为，ServiceWorkerCache 仅受浏览器 容量管理系统（QuotaManager） 对域名可使用存储的限制。对于前端开发同学来说，必须有清理冗余缓存的业务逻辑，并且提高缓存资源的使用率。</p>
 <p>关于它与http cache的区别，HTTP Cache 中，一个 URL 只能对应一个 Response，但 Cache API 规范要求同一 URL（不同的 Header）可以对应多个 Response，另外，HTTP Cache 没有使用容量管理系统（QuotaManager）而 Cache API 需要使用。当 Service Worker 从 Cache 拿不到资源时，就会去 http cache 查找，找不到才去请求网络。</p>
 </section></article></div></div></div><div id="bottom-outer"><div id="bottom-inner"><span>Site construction by</span><span> 牧羊少年 </span><span>using</span><a href="http://hexo.io"><span>hexo blog framework</span></a><span>.</span></div></div><script>window.is_home = false</script><script src="/js/resLoader.js"></script><script src="/js/main.js"></script><script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1521690707039')
+  navigator.serviceWorker.register('/sw.js?t=1524810659297')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
